@@ -1,0 +1,38 @@
+set nocompatible
+set encoding=utf-8
+set number " Display line numbers on the left
+"set numberwidth=3
+set viminfo+=n~/.config/vim/viminfo
+set confirm "Instead of failing a command because of unsaved changes, instead raise a dialogue asking if you wish to save changed files.
+set clipboard+=unnamed " Allow copying from Vim
+set selection=exclusive " Don't grab the gutter when selecting with the mouse in visual mode
+set noswapfile " Avoid cruft
+
+" Allow mouse, except for insert mode.
+if has('mouse')
+    set mouse=nv
+endif
+
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+    " Initialize plugin system
+    " - Automatically executes `filetype plugin indent on` and `syntax enable`.
+    Plug 'dracula/vim', { 'as': 'dracula' }
+
+    source ~/.vim/configs/ale.vim
+    source ~/.vim/configs/airline.vim
+    source ~/.vim/configs/commentary.vim
+    source ~/.vim/configs/nerdtree.vim
+    source ~/.vim/configs/surround.vim
+
+call plug#end()
+
+source ~/.vim/configs/theme-tweaks.vim " Theme Content
+source ~/.vim/configs/keymaps.vim " Custom Keymappings
+source ~/.vim/configs/formatting.vim " Tabs, Spaces, All That...
+source ~/.vim/configs/search-related.vim " Changes search functions and styles
