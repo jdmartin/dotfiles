@@ -1,7 +1,7 @@
 " Custom Keymappings
 
 "Close all panes and quit without saving
-nnoremap <Leader>, :qa!<CR>
+nnoremap <Leader>, :qa!<CR>:FloatermKill<CR>
 
 "Tab and Shift Tab
 xnoremap <Tab> :s/^/\t/<CR>:nohl<CR>
