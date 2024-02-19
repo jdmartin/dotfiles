@@ -27,7 +27,7 @@ call plug#begin()
     source ~/.vim/configs/ale.vim
     source ~/.vim/configs/airline.vim
     source ~/.vim/configs/commentary.vim
-    source ~/.vim/configs/nerdtree.vim
+    "source ~/.vim/configs/nerdtree.vim " Trying to just use Vexplore for now.
     source ~/.vim/configs/surround.vim
 
     if has('mac')

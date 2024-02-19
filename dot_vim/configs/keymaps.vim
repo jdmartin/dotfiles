@@ -16,3 +16,6 @@ vnoremap > >gv
 
 "new tab
 nnoremap <Leader>t :tabnew<CR>
+
+"Vexplore
+nnoremap <C-x> :Vexplore<CR>
