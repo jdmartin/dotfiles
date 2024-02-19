@@ -27,9 +27,12 @@ call plug#begin()
     source ~/.vim/configs/ale.vim
     source ~/.vim/configs/airline.vim
     source ~/.vim/configs/commentary.vim
-    source ~/.vim/configs/floaterm.vim
     source ~/.vim/configs/nerdtree.vim
     source ~/.vim/configs/surround.vim
+
+    if has('mac')
+        source ~/.vim/configs/floaterm.vim
+    endif
 
 call plug#end()
 
