@@ -13,7 +13,7 @@ case Linux
     switch mynameis
         case root
             set -l the_path "/root/"
-        case *
+        case '*'
             set -l the_path "/home/$mynameis/"
     end
     set -l linux_functions_path "$the_path/.config/fish/functions/linux"
