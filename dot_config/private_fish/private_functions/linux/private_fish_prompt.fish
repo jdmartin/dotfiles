@@ -5,7 +5,7 @@ function create_prompt --description 'Provide obvious indication of root'
     if test "$mynameis" = "root"
         printf '%s %s%s%s%s%s%s> ' (set_color ccb3ff)(echo $PROPHOSTNAME)(set_color normal) (echo $rootindicator) (set_color 63C563) (prompt_pwd) (set_color normal) (virtualenv_prompt) (fish_git_prompt)
     else
-        printf '%s %s%s%s%s%s> ' (set_color ccb3ff)(echo $PROPHOSTNAME)(set_color normal) (set_color 63C563) (prompt_pwd) (set_color normal) (virtualenv_prompt) (fish_git_prompt)
+        printf '%s %s%s%s%s%s> ' (set_color ccb3ff)(echo $mynameis)(set_color normal) (set_color 63C563) (prompt_pwd) (set_color normal) (virtualenv_prompt) (fish_git_prompt)
     end
 end
 
