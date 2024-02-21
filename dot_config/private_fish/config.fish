@@ -10,11 +10,10 @@ case Darwin
     source /Users/Jon/.iterm2/.iterm2_shell_integration.fish
 case Linux
     set -l mynameis (whoami)
-    switch mynameis
-        case root
-            set -l the_path "/root/"
-        case '*'
-            set -l the_path "/home/$mynameis/"
+    if $mynameis == "root":
+        set -l the_path "/root/"
+    else
+        set -l the_path "/home/$mynameis/"
     end
     set -l linux_functions_path "$the_path/.config/fish/functions/linux"
     if not contains -- "$linux_functions_path" $fish_function_path
