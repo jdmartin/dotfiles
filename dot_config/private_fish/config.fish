@@ -11,9 +11,9 @@ case Darwin
 case Linux
     set -l mynameis (whoami)
     if test $mynameis = "root":
-        set -l the_path "/root/"
+        set -f the_path "/root"
     else
-        set -l the_path "/home/$mynameis/"
+        set -f the_path "/home/$mynameis"
     end
     set -l linux_functions_path "$the_path/.config/fish/functions/linux"
     if not contains -- "$linux_functions_path" $fish_function_path
