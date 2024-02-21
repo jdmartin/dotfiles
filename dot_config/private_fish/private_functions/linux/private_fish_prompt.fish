@@ -3,9 +3,9 @@ function create_prompt --description 'Provide obvious indication of root'
     set -l mynameis (whoami)
     set -l rootindicator (set_color red)\# (set_color normal)
     if test "$mynameis" = "root"
-        printf '%s %s%s%s%s%s%s> ' (set_color ccb3ff)(echo $PROPHOSTNAME)(set_color normal) (echo $rootindicator) (set_color 63C563) (prompt_pwd) (set_color normal) (virtualenv_prompt) (fish_git_prompt)
+        printf '%s %s%s%s%s%s%s> ' (set_color 5cccdb)(echo $PROPHOSTNAME)(set_color normal) (echo $rootindicator) (set_color 63C563) (prompt_pwd) (set_color normal) (virtualenv_prompt) (fish_git_prompt)
     else
-        printf '%s %s%s%s%s%s> ' (set_color ccb3ff)(echo $mynameis)(set_color normal) (set_color 63C563) (prompt_pwd) (set_color normal) (virtualenv_prompt) (fish_git_prompt)
+        printf '%s %s%s%s%s%s> ' (set_color 5cccdb)(echo $mynameis)(set_color normal) (set_color 63C563) (prompt_pwd) (set_color normal) (virtualenv_prompt) (fish_git_prompt)
     end
 end
 
