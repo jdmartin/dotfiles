@@ -10,7 +10,7 @@ case Darwin
     source /Users/Jon/.iterm2/.iterm2_shell_integration.fish
 case Linux
     set -f mynameis (whoami)
-    if test $mynameis = "root":
+    if test $mynameis = "root"
         set -f the_path "/root"
     else
         set -f the_path "/home/$mynameis"
