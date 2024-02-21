@@ -1,7 +1,7 @@
 #Import Universal Config On Mac
 switch (uname)
 case Darwin
-    set -l mac_functions_path "/Users/Jon/.config/fish/functions/mac"
+    set -f mac_functions_path "/Users/Jon/.config/fish/functions/mac"
     if not contains -- "$mac_functions_path" $fish_function_path
         set -gx fish_function_path "$mac_functions_path" $fish_function_path
     end
@@ -9,13 +9,13 @@ case Darwin
     ##iTerm integration (Commenting this out seems to have fixed my weird emoji_prompt / backspace issues)
     source /Users/Jon/.iterm2/.iterm2_shell_integration.fish
 case Linux
-    set -l mynameis (whoami)
+    set -f mynameis (whoami)
     if test $mynameis = "root":
         set -f the_path "/root"
     else
         set -f the_path "/home/$mynameis"
     end
-    set -l linux_functions_path "$the_path/.config/fish/functions/linux"
+    set -f linux_functions_path "$the_path/.config/fish/functions/linux"
     if not contains -- "$linux_functions_path" $fish_function_path
         set -gx fish_function_path "$linux_functions_path" $fish_function_path
     end
