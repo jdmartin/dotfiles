@@ -6,6 +6,7 @@ case Darwin
         set -gx fish_function_path "$mac_functions_path" $fish_function_path
     end
     source ~/.config/.universal_config
+    source ~/.config/.mac_config
     ##iTerm integration (Commenting this out seems to have fixed my weird emoji_prompt / backspace issues)
     source /Users/Jon/.iterm2/.iterm2_shell_integration.fish
 case Linux
@@ -19,6 +20,7 @@ case Linux
     if not contains -- "$linux_functions_path" $fish_function_path
         set -gx fish_function_path "$linux_functions_path" $fish_function_path
     end
+    source ~/.config/.universal_config
 end
 
 set -x PROPHOSTNAME (hostname | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
