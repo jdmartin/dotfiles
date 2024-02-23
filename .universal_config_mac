@@ -1,7 +1,16 @@
-#Items in this file are just for my Macs...
-
 #Meta
+#export ARCHFLAGS="-arch x86_64"
+export EDITOR=vim
+export HISTTIMEFORMAT="%d/%m/%y %T "
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 export __CF_USER_TEXT_ENCODING=0x0:0:0
+
+#XDG
+export XDG_CACHE_HOME="$HOME"/.cache
+export XDG_CONFIG_HOME="$HOME"/.config
+export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_STATE_HOME="$HOME"/.local/state
 
 #Bat
 export BAT_THEME="Dracula"
@@ -11,6 +20,9 @@ export CONAN_USER_HOME="$XDG_DATA_HOME"/conan
 
 #dvdcss
 export DVDCSS_CACHE=$HOME/.local/dvdcss
+
+#GNUPG
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 
 #GO
 export GOPATH=$HOME/.local/go
@@ -37,8 +49,15 @@ export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 #Java
 export JAVA_TOOL_OPTIONS="-Doracle.net.disableOob=true"
 
+#Less
+export LESSHISTFILE="$XDG_CONFIG_HOME"/.lesshst
+
 #linode
 source "$XDG_CONFIG_HOME"/op/plugins.sh
+
+#man
+export GROFF_NO_SGR=1
+export MANPAGER='/usr/bin/less -g -s -M +Gg'
 
 #Node
 export NODE_REPL_HISTORY="$XDG_CONFIG_HOME"/node/.node_repl_history
@@ -50,6 +69,12 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 
 #oh-my-zsh
 export ZSH="$XDG_DATA_HOME"/oh-my-zsh
+
+#parallel
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
+
+#Powershell
+export POWERSHELL_TELEMETRY_OPTOUT=1
 
 #Python
 export PIP_CONFIG_HOME="$XDG_CONFIG_HOME"/.pip/pip.conf
@@ -76,5 +101,21 @@ export BUNDLE_USER_CACHE="$XDG_CONFIG_HOME"/bundle
 export BUNDLE_USER_PLUGIN="$XDG_CONFIG_HOME"/bundle
 export RBENV_ROOT="$XDG_CONFIG_HOME"/.rbenv
 
+#Rust
+export CARGO_HOME="$XDG_CONFIG_HOME"/rust/.cargo
+export RUSTUP_HOME="$XDG_CONFIG_HOME"/rust/rustup
+
+#.sh_history (fix)
+export HISTFILE="$XDG_CONFIG_HOME"/.sh_history
+
 #SSH
 export SSH_AUTH_SOCK="$HOME"/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+
+#sqlite
+export SQLITE_HISTORY="$XDG_CONFIG_HOME"/.sqlite_history
+
+#Sqlmap
+export SQLMAP_OUTPUT_PATH="$XDG_CONFIG_HOME"/sqlmap
+
+#ZSH
+export ZDOTDIR="$XDG_CONFIG_HOME"/zsh

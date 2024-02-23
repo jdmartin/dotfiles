@@ -1,0 +1,43 @@
+#Meta
+#export ARCHFLAGS="-arch x86_64"
+export EDITOR=vim
+export HISTTIMEFORMAT="%d/%m/%y %T "
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+#XDG
+export XDG_CACHE_HOME="$HOME"/.cache
+export XDG_CONFIG_HOME="$HOME"/.config
+export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_STATE_HOME="$HOME"/.local/state
+
+#GNUPG
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+
+#Less
+export LESSHISTFILE="$XDG_CONFIG_HOME"/.lesshst
+
+#man
+export GROFF_NO_SGR=1
+export MANPAGER='/usr/bin/less -g -s -M +Gg'
+
+#parallel
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
+
+#Powershell
+export POWERSHELL_TELEMETRY_OPTOUT=1
+
+#Rust
+export CARGO_HOME="$XDG_CONFIG_HOME"/rust/.cargo
+export RUSTUP_HOME="$XDG_CONFIG_HOME"/rust/rustup
+
+#.sh_history (fix)
+export HISTFILE="$XDG_CONFIG_HOME"/.sh_history
+
+#sqlite
+export SQLITE_HISTORY="$XDG_CONFIG_HOME"/.sqlite_history
+
+#Sqlmap
+export SQLMAP_OUTPUT_PATH="$XDG_CONFIG_HOME"/sqlmap
+
+#ZSH
+export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
