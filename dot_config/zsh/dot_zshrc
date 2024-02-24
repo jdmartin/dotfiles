@@ -1,0 +1,149 @@
+#PROMPTS
+#PROMPT='%B%F{81}%m%f%b %F{blue}%B%~ %B%F{212}$(virtualenv_info)%f%b $(git_prompt_info)> '
+#RPROMPT='%*' #Displays time
+#RPROMPT='$(git_prompt_info)'
+
+#Import Universal Config
+source "$HOME"/.config/.universal_config
+
+#ZSH stuff
+export AUTOSWITCH_MESSAGE_FORMAT="$(tput setaf 1)Switching to %venv_name 🐍  %py_version $(tput sgr0)"
+source "$HOME"/.iterm2/.iterm2_shell_integration.zsh
+precmd() { random_emoji }
+
+#Theme
+export DRACULA_DISPLAY_CONTEXT=1
+
+#Custom History
+HISTFILE="$HOME/.config/zsh/.zsh_history"
+HISTSIZE=1000000
+SAVEHIST=1000000
+# Do not save duplicate commands to history
+setopt HIST_IGNORE_ALL_DUPS
+# Do not find duplicate command when searching
+setopt HIST_FIND_NO_DUPS
+
+#Custom Variables
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="dracula"
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+export UPDATE_ZSH_DAYS=1
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+#Custom
+
+#Plugins from Homebrew
+#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+#Plugins from elsewhere
+#source /Users/Jon/.zsh/plugins/zsh-autoswitch-virtualenv/autoswitch_virtualenv.plugin.zsh
+#source /usr/local/share/.zsh-nvm/zsh-nvm.plugin.zsh
+
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+    autoswitch_virtualenv
+    dirhistory
+    virtualenv
+    zsh-autosuggestions
+)
+
+#Dracula Syntax Highlighting
+if [ -z "$HOME"/.config/zsh/.dracula-highlighting.zsh ]; then
+    source ~"$HOME"/.config/zsh/.dracula-highlighting.zsh
+fi
+
+#Change Autosuggestions Highlight Color
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=14,bold,underline"
+
+#Disused Plugin
+#macos
+
+source "$HOME"/.local/share/oh-my-zsh/oh-my-zsh.sh
+
+# User configuration
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+
+alias bash="bash --noprofile"
+
+function nano() {
+    iterm2_set_user_var badge
+	command /opt/homebrew/bin/nano "$argv"
+}
+
+function random_emoji() {
+    iterm2_set_user_var badge $(/usr/bin/sort -R /Users/Jon/.config/fish/emoji | head -n 1)
+}
+
+function vim() {
+    iterm2_set_user_var badge
+	command /usr/bin/vim "$argv"
+}
+
+function virtualenv_info() {
+    [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
+}
+
+#Custom location for zcompdump
+compinit -d "$HOME"/.config/zsh/cache/zcompdump-$ZSH_VERSION;
+
