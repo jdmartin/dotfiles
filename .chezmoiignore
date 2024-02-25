@@ -3,6 +3,7 @@
 .config/fish/functions/mac
 .config/python/.pylintrc
 .config/zsh
+.hushlogin
 {{- end }}
 
 {{- if ne .chezmoi.os "linux" }}
