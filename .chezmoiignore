@@ -1,15 +1,12 @@
 {{- if ne .chezmoi.os "darwin" }}
-.config/zsh
-{{- end }}
-
-{{- if ne .chezmoi.os "darwin" }}
+#Things not to include on my Linux boxes
+.config/bash/.bash_aliases
 .config/fish/functions/mac
+.config/zsh
+.nanorc
 {{- end }}
 
 {{- if ne .chezmoi.os "linux" }}
+#Things not to include on my Macs
 .config/fish/functions/linux
-{{- end }}
-
-{{- if ne .chezmoi.os "darwin" }}
-.config/bash/.bash_aliases
 {{- end }}
