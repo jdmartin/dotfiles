@@ -17,6 +17,11 @@ source ~/.config/.universal_config
 {{ end }}
 set -x PROPHOSTNAME (hostname | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
 
+# Abbreviations
+abbr --add cme chezmoi edit
+abbr --add cm chezmoi cd
+abbr --add cmva 'chezmoi -v apply'
+abbr --add ca chezmoi apply
 # Setting PATH for Python 3.11
 # The original version is saved in /Users/Jon/.config/fish/config.fish.pysave
 #set -x PATH "/Library/Frameworks/Python.framework/Versions/3.11/bin" "$PATH"
