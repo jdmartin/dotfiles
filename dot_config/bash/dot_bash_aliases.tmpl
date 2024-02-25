@@ -1,6 +1,7 @@
-
+{{ if eq .chezmoi.os "darwin" }}
 alias ls='ls -G'
-
-
-
+{{ end }}
+{{ if eq .chezmoi.os "linux" }}
+alias ls='ls --color=auto'
+{{ end }}
 alias bash="bash --noprofile"
