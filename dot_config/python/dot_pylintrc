@@ -1,0 +1,9 @@
+[MESAGES CONTROL]
+disable=
+    invalid-name,
+    line-too-long,
+    missing-function-docstring,
+    missing-module-docstring,
+    non-ascii-name,
+    trailing-newlines,
+    unspecified-encoding

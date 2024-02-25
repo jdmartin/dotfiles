@@ -1,6 +1,7 @@
 {{- if ne .chezmoi.os "darwin" }}
 #Things not to include on my Linux boxes
 .config/fish/functions/mac
+.config/python/.pylintrc
 .config/zsh
 {{- end }}
 
