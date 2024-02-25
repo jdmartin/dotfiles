@@ -1,0 +1,39 @@
+#PROMPT, Active
+export PS1='[\[\e[94m\]\w\[\e[0m\]]:\[\e[1;36m\]$\[\e[0m\] '
+#color generator: https://geoff.greer.fm/lscolors/
+#Below are: directory, system link, socket, pipe, executable, block special, char special, exe_setuid, exe_setgid, dir_writeothers_stickybit, dir_writeothers_nostickybit
+#export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+
+#Universal Config
+source ~/.config/.universal_config
+
+#Programming and Utility Related
+export HISTCONTROL=ignorespace
+export HISTFILE="$HOME"/.config/bash/.bash_history
+
+#Color Man Pages
+man() {
+    export GROFF_NO_SGR=1
+    export MANPAGER='/usr/bin/less -g -s -M +Gg'
+    env \
+        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+        LESS_TERMCAP_md=$(printf "\e[1;34m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;45;37m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;36m") \
+            man "$@"
+}
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f "$HOME"/.config/bash/.bash_aliases ]; then
+    . "$HOME"/.config/bash/.bash_aliases
+fi
+
+# Rust things
+. "$HOME/.config/rust/.cargo/env"
