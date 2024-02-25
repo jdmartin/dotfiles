@@ -1,6 +1,5 @@
 {{- if ne .chezmoi.os "darwin" }}
 #Things not to include on my Linux boxes
-.config/bash/.bash_aliases
 .config/fish/functions/mac
 .config/zsh
 {{- end }}
