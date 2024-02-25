@@ -36,4 +36,6 @@ if [ -f "$HOME"/.config/bash/.bash_aliases ]; then
 fi
 
 # Rust things
-. "$HOME/.config/rust/.cargo/env"
+if [ -f "$HOME"/.config/rust/.cargo/env ]; then
+    . "$HOME/.config/rust/.cargo/env"
+fi
