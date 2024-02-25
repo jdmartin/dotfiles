@@ -1,0 +1,10 @@
+
+include /opt/homebrew/share/nano/*.nanorc
+
+set tabsize 4
+set tabstospaces
+set indicator
+#set scrollercolor blue
+#set minibar
+#set linenumbers
+#set mouse
