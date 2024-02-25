@@ -1,6 +1,6 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #Import Universal Config On Mac
-set -f mac_functions_path "/$HOME/.config/fish/functions/mac"
+set -f mac_functions_path "$HOME/.config/fish/functions/mac"
 if not contains -- "$mac_functions_path" $fish_function_path
     set -gx fish_function_path "$mac_functions_path" $fish_function_path
 end
