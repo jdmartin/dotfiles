@@ -1,5 +1,6 @@
+{{ if eq .chezmoi.os "darwin" }}
 include /opt/homebrew/share/nano/*.nanorc
-
+{{ end }}
 set tabsize 4
 set tabstospaces
 set indicator

@@ -3,7 +3,6 @@
 .config/bash/.bash_aliases
 .config/fish/functions/mac
 .config/zsh
-.nanorc
 {{- end }}
 
 {{- if ne .chezmoi.os "linux" }}
