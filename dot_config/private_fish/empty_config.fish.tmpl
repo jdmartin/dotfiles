@@ -4,7 +4,7 @@ source ~/.config/.universal_config
 ##iTerm integration (Commenting this out seems to have fixed my weird emoji_prompt / backspace issues)
 source "$HOME"/.iterm2/.iterm2_shell_integration.fish
 {{ end }}
-set -x PROPHOSTNAME (hostname | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
+set -x PROPHOSTNAME (prompt_hostname | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
 
 # Abbreviations
 abbr --add cme chezmoi edit
