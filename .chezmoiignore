@@ -1,6 +1,10 @@
 {{- if ne .chezmoi.os "darwin" }}
 #Things not to include on my Linux boxes
-.config/fish/functions/mac
+.config/fish/functions/figlet.fish
+.config/fish/functions/harlequin.fish
+.config/fish/functions/ls.fish
+.config/fish/functions/nano.fish
+.config/fish/functions/vim.fish
 .config/python/.pylintrc
 .config/zsh
 .hushlogin
@@ -8,5 +12,5 @@
 
 {{- if ne .chezmoi.os "linux" }}
 #Things not to include on my Macs
-.config/fish/functions/linux
+.config/fish/functions/ps.fish
 {{- end }}
