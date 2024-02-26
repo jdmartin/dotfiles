@@ -1,15 +1,8 @@
-{{- if eq .chezmoi.os "darwin" -}}
-#Import Universal Config On Mac
+#Import Universal Config
 source ~/.config/.universal_config
+{{if eq .chezmoi.os "darwin" -}}
 ##iTerm integration (Commenting this out seems to have fixed my weird emoji_prompt / backspace issues)
 source "$HOME"/.iterm2/.iterm2_shell_integration.fish
-{{ end }}
-{{- if eq .chezmoi.os "linux" -}}
-set -f linux_functions_path "$HOME/.config/fish/functions/linux"
-if not contains -- "$linux_functions_path" $fish_function_path
-    set -gx fish_function_path "$linux_functions_path" $fish_function_path
-end
-source ~/.config/.universal_config
 {{ end }}
 set -x PROPHOSTNAME (hostname | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
 
@@ -18,6 +11,7 @@ abbr --add cme chezmoi edit
 abbr --add cm chezmoi cd
 abbr --add cmva 'chezmoi -v apply'
 abbr --add ca chezmoi apply
+
 # Setting PATH for Python 3.11
 # The original version is saved in /Users/Jon/.config/fish/config.fish.pysave
 #set -x PATH "/Library/Frameworks/Python.framework/Versions/3.11/bin" "$PATH"
