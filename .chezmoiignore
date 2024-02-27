@@ -2,6 +2,8 @@
 #Things not to include on my Linux boxes
 .config/fish/emoji
 .config/fish/conf.d/emoji.fish
+.config/fish/conf.d/virtualfish.fish
+.config/fish/conf.d/virtualfish-loader.fish
 .config/fish/functions/figlet.fish
 .config/fish/functions/harlequin.fish
 .config/fish/functions/ls.fish
