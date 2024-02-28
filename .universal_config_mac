@@ -77,6 +77,7 @@ export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 export POWERSHELL_TELEMETRY_OPTOUT=1
 
 #Python
+export PIPX_HOME="$HOME"/.local/pipx/
 export PIP_CONFIG_HOME="$XDG_CONFIG_HOME"/.pip/pip.conf
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/.pythonrc
 export POETRY_HOME="$XDG_CONFIG_HOME"/python/poetry
