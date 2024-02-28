@@ -1,9 +1,3 @@
-{{- if ne .chezmoi.hostname "neptune" }}
-#Things that are only for prime Mac
-.config/fish/conf.d/virtualfish.fish
-.config/fis/conf.d/virtualfish-loader.fish
-{{- end }}
-
 {{- if ne .chezmoi.os "darwin" }}
 #Things not to include on my Linux boxes
 .config/fish/emoji
