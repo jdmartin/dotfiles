@@ -1,4 +1,6 @@
-{{- if eq .chezmoi.os "darwin" -}}
+{{- if eq .chezmoi.hostname "hecate" -}}
+{{-   include ".universal_config_work" -}}
+{{- else if eq .chezmoi.os "darwin" -}}
 {{-   include ".universal_config_mac" -}}
 {{- else if eq .chezmoi.os "linux" -}}
 {{-   include ".universal_config_linux" -}}
