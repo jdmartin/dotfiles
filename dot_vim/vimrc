@@ -7,6 +7,7 @@ set confirm "Instead of failing a command because of unsaved changes, instead ra
 set clipboard+=unnamed " Allow copying from Vim
 set selection=exclusive " Don't grab the gutter when selecting with the mouse in visual mode
 set noswapfile " Avoid cruft
+filetype plugin on " Added for Vimwiki
 
 " Allow mouse, except for insert mode.
 if has('mouse')
@@ -29,6 +30,7 @@ call plug#begin()
     source ~/.vim/configs/commentary.vim
     source ~/.vim/configs/nerdtree.vim
     source ~/.vim/configs/surround.vim
+    source ~/.vim/configs/vimwiki.vim
 
     if has('mac')
         source ~/.vim/configs/floaterm.vim
