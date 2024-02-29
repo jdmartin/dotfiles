@@ -1,5 +1,10 @@
 Plug 'vimwiki/vimwiki'
 
+{{ if eq .chezmoi.hostname "CUL-1664" -}}
+let g:vimwiki_list = [{'path': '$HOME/Documents/Obsidian/Cambridge/Vim',
+                      \ 'syntax': 'markdown', 'ext': 'md'}]
+{{- end -}}
+
 {{ if eq .chezmoi.hostname "neptune" -}}
 let g:vimwiki_list = [{'path': '$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Obsidian/Vim',
                       \ 'syntax': 'markdown', 'ext': 'md'}]
