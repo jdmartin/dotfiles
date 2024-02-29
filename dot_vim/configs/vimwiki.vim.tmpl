@@ -1,0 +1,9 @@
+Plug 'vimwiki/vimwiki'
+
+{{ if eq .chezmoi.hostname "neptune" -}}
+let g:vimwiki_list = [{'path': '$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Obsidian/Vim',
+                      \ 'syntax': 'markdown', 'ext': 'md'}]
+{{ else }}
+let g:vimwiki_list = [{'path': '$HOME/.vim/wiki',
+                      \ 'syntax': 'markdown', 'ext': 'md'}]
+{{- end -}}
