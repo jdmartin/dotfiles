@@ -4,11 +4,11 @@ Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '$HOME/Documents/Obsidian/Cambridge/Vim',
                       \ 'syntax': 'markdown', 'ext': 'md'}]
 {{- end -}}
-
 {{ if eq .chezmoi.hostname "neptune" -}}
 let g:vimwiki_list = [{'path': '$HOME/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Obsidian/Vim',
                       \ 'syntax': 'markdown', 'ext': 'md'}]
-{{ else }}
+{{- end -}}
+{{ if eq .chezmoi.os "linux" -}}
 let g:vimwiki_list = [{'path': '$HOME/.vim/wiki',
                       \ 'syntax': 'markdown', 'ext': 'md'}]
 {{- end -}}
