@@ -8,7 +8,7 @@ source "$HOME"/.config/.universal_config
 
 #ZSH stuff
 export AUTOSWITCH_MESSAGE_FORMAT="$(tput setaf 1)Switching to %venv_name 🐍  %py_version $(tput sgr0)"
-source "$HOME"/.iterm2/.iterm2_shell_integration.zsh
+source "$XDG_CONFIG_HOME"/iterm2/.iterm2_shell_integration.zsh
 precmd() { random_emoji }
 
 #Theme
