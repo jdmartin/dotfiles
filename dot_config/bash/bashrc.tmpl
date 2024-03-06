@@ -38,7 +38,6 @@ terraform_with_aws_session() {
   command terraform "$@"
 }
 aws_with_session() {
-   local AWSPATH=$(which aws)
    local AWS_ACCESS_KEY=$(op read "op://private/aws_session/aws_access_key")
    local AWS_SECRET_ACCESS_KEY=$(op read "op://private/aws_session/aws_secret_access_key")
    local AWS_SESSION_TOKEN=$(op read "op://private/aws_session/aws_session_token")
@@ -46,7 +45,7 @@ aws_with_session() {
    AWS_ACCESS_KEY="$AWS_ACCESS_KEY" \
    AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
    AWS_SESSION_TOKEN="$AWS_SESSION_TOKEN" \
-   command "$AWSPATH" "$@"
+   command aws "$@"
 }
 {{ end }}
 # Alias definitions.
