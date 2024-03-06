@@ -26,13 +26,16 @@ man() {
             man "$@"
 }
 
-{{- if eq .chezmoi.hostname "CUL-1664" -}}
+{{- if eq .chezmoi.hostname "CUL-1664" }}
 terraform_with_aws_session() {
-   local AWS_SECRET_KEY=$(op read "op://private/AWS Access Key/access key id")
-   local AWS_SECRET_ACCESS_KEY=$(op read "op://private/AWS Access Key/secret access key")
-   local AWS_SESSION_TOKEN=$(op read "op://private/AWS Access Key/session token")
+  local AWS_ACCESS_KEY=$(op read "op://private/aws_session/aws_access_key")
+  local AWS_SECRET_ACCESS_KEY=$(op read "op://private/aws_session/aws_secret_access_key")
+  local AWS_SESSION_TOKEN=$(op read "op://private/aws_session/aws_session_token")
 
-   env AWS_SECRET_KEY="$AWS_SECRET_KEY" AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" AWS_SESSION_TOKEN="$AWS_SESSION_TOKEN" terraform "$@"
+  AWS_ACCESS_KEY="$AWS_ACCESS_KEY" \
+  AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
+  AWS_SESSION_TOKEN="$AWS_SESSION_TOKEN" \
+  command terraform "$@"
 }
 {{ end }}
 # Alias definitions.
@@ -49,6 +52,6 @@ if [ -f "$HOME"/.config/rust/.cargo/env ]; then
     . "$HOME/.config/rust/.cargo/env"
 fi
 
-{{ if eq .chezmoi.hostname "CUL-1664" }}
+{{- if eq .chezmoi.hostname "CUL-1664" }}
 alias terraform='terraform_with_aws_session'
-{{ end -}}
+{{ end }}
