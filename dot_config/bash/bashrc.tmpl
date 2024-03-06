@@ -37,6 +37,16 @@ terraform_with_aws_session() {
   AWS_SESSION_TOKEN="$AWS_SESSION_TOKEN" \
   command terraform "$@"
 }
+aws_with_session() {
+   local AWS_ACCESS_KEY=$(op read "op://private/aws_session/aws_access_key")
+   local AWS_SECRET_ACCESS_KEY=$(op read "op://private/aws_session/aws_secret_access_key")
+   local AWS_SESSION_TOKEN=$(op read "op://private/aws_session/aws_session_token")
+
+   AWS_ACCESS_KEY="$AWS_ACCESS_KEY" \
+   AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
+   AWS_SESSION_TOKEN="$AWS_SESSION_TOKEN" \
+   command aws "$@"
+}
 {{ end }}
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -54,4 +64,5 @@ fi
 
 {{- if eq .chezmoi.hostname "CUL-1664" }}
 alias terraform='terraform_with_aws_session'
+alias aws='aws_with_session'
 {{ end }}
