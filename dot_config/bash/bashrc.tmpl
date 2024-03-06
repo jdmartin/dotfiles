@@ -26,6 +26,15 @@ man() {
             man "$@"
 }
 
+{{- if eq .chezmoi.hostname "CUL-1664" -}}
+terraform_with_aws_session() {
+   local AWS_SECRET_KEY=$(op read "op://private/AWS Access Key/access key id")
+   local AWS_SECRET_ACCESS_KEY=$(op read "op://private/AWS Access Key/secret access key")
+   local AWS_SESSION_TOKEN=$(op read "op://private/AWS Access Key/session token")
+
+   env AWS_SECRET_KEY="$AWS_SECRET_KEY" AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" AWS_SESSION_TOKEN="$AWS_SESSION_TOKEN" terraform "$@"
+}
+{{ end }}
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -39,3 +48,7 @@ fi
 if [ -f "$HOME"/.config/rust/.cargo/env ]; then
     . "$HOME/.config/rust/.cargo/env"
 fi
+
+{{ if eq .chezmoi.hostname "CUL-1664" }}
+alias terraform='terraform_with_aws_session'
+{{ end -}}
