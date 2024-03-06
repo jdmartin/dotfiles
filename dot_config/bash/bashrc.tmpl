@@ -12,7 +12,7 @@ export HISTCONTROL=ignorespace
 export HISTFILE="$HOME"/.config/bash/.bash_history
 
 #Color Man Pages
-man() {
+function man() {
     export GROFF_NO_SGR=1
     export MANPAGER='/usr/bin/less -g -s -M +Gg'
     env \
@@ -27,7 +27,7 @@ man() {
 }
 
 {{- if eq .chezmoi.hostname "CUL-1664" }}
-terraform_with_aws_session() {
+function terraform_with_aws_session() {
   local AWS_ACCESS_KEY=$(op read "op://private/aws_session/aws_access_key")
   local AWS_SECRET_ACCESS_KEY=$(op read "op://private/aws_session/aws_secret_access_key")
   local AWS_SESSION_TOKEN=$(op read "op://private/aws_session/aws_session_token")
@@ -37,15 +37,16 @@ terraform_with_aws_session() {
   AWS_SESSION_TOKEN="$AWS_SESSION_TOKEN" \
   command terraform "$@"
 }
-aws_with_session() {
-   local AWS_ACCESS_KEY=$(op read "op://private/aws_session/aws_access_key")
+function aws_with_session() {
+   local AWSPATH=$(which aws)
+   local AWS_ACCESS_KEY_ID=$(op read "op://private/aws_session/aws_access_key")
    local AWS_SECRET_ACCESS_KEY=$(op read "op://private/aws_session/aws_secret_access_key")
    local AWS_SESSION_TOKEN=$(op read "op://private/aws_session/aws_session_token")
 
-   AWS_ACCESS_KEY="$AWS_ACCESS_KEY" \
+   AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" \
    AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
    AWS_SESSION_TOKEN="$AWS_SESSION_TOKEN" \
-   command aws "$@"
+   "$AWSPATH" "$@"
 }
 {{ end }}
 # Alias definitions.
