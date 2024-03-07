@@ -1,6 +1,10 @@
 {{- if eq .chezmoi.os "darwin" -}}
 function vim --description 'Run the best editor -- vim'
     iterm2_set_user_var badge
-    command /usr/bin/vim $argv
+    if test -e /usr/local/bin/vim
+        command /usr/local/bin/vim $argv
+    else
+        command /usr/bin/vim $argv
+    end
 end
 {{- end -}}
