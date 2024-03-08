@@ -25,7 +25,7 @@ call plug#begin()
     " - Automatically executes `filetype plugin indent on` and `syntax enable`.
     Plug 'dracula/vim', { 'as': 'dracula' }
 
-    "source ~/.vim/configs/ale.vim
+    source ~/.vim/configs/ale.vim
     source ~/.vim/configs/airline.vim
     source ~/.vim/configs/commentary.vim
     source ~/.vim/configs/nerdtree.vim

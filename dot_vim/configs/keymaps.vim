@@ -16,3 +16,9 @@ vnoremap > >gv
 
 "new tab
 nnoremap <Leader>t :tabnew<CR>
+
+"open file under cursor in new tab always
+nnoremap gf :tabe <cfile><CR>
+
+"jump to next ALE error
+nmap <silent> <leader>e <Plug>(ale_next_wrap)
