@@ -21,4 +21,4 @@ nnoremap <Leader>t :tabnew<CR>
 nnoremap gf :tabe <cfile><CR>
 
 "jump to next ALE error
-nmap <silent> <leader>e <Plug>(ale_next_wrap)
+"nmap <silent> <leader>e <Plug>(ale_next_wrap)
