@@ -7,6 +7,7 @@ set confirm "Instead of failing a command because of unsaved changes, instead ra
 set clipboard+=unnamed " Allow copying from Vim
 set selection=exclusive " Don't grab the gutter when selecting with the mouse in visual mode
 set noswapfile " Avoid cruft
+set backspace=indent,eol,start
 filetype plugin on " Added for Vimwiki
 
 " Allow mouse, except for insert mode.
@@ -25,7 +26,7 @@ call plug#begin()
     " - Automatically executes `filetype plugin indent on` and `syntax enable`.
     Plug 'dracula/vim', { 'as': 'dracula' }
 
-    "source ~/.vim/configs/ale.vim
+    source ~/.vim/configs/ale.vim
     source ~/.vim/configs/airline.vim
     source ~/.vim/configs/commentary.vim
     source ~/.vim/configs/nerdtree.vim

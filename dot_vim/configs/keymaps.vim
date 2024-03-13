@@ -20,5 +20,8 @@ nnoremap <Leader>t :tabnew<CR>
 "open file under cursor in new tab always
 nnoremap gf :tabe <cfile><CR>
 
+"map :%s/ to <leader>s
+nnoremap <leader>s :%s/
+
 "jump to next ALE error
-"nmap <silent> <leader>e <Plug>(ale_next_wrap)
+nmap <silent> <leader>e <Plug>(ale_next_wrap)
