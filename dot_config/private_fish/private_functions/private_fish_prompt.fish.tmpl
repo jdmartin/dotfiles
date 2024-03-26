@@ -1,10 +1,35 @@
 {{- if eq .chezmoi.os "darwin" -}}
-#emoji
-#function random_emoji --description 'Display a random emoji as a badge'
-#    set -l chosen_emoji (/usr/bin/sort -R /Users/Jon/.config/fish/emoji | head -n 1)
-#    iterm2_set_user_var badge $chosen_emoji
-#    #echo $chosen_emoji
-#end
+{{- if eq .chezmoi.hostname "CUL-1664" -}}
+# Helper function to convert to pretty time
+function convert_time_remainder
+    set total_seconds $argv[1]
+
+    set days (math --scale 0 "($total_seconds / 86400)")
+    set total_seconds (math --scale 0 "($total_seconds % 86400)")
+
+    set hours (math --scale 0 "($total_seconds / 3600)")
+    set total_seconds (math --scale 0 "($total_seconds % 3600)")
+
+    set minutes (math --scale 0 "($total_seconds / 60)")
+    set seconds (math --scale 0 "($total_seconds % 60)")
+
+    printf "%02d:%02d:%02d:%02d" $days $hours $minutes $seconds
+end
+
+function display_countdown
+    if test -e "$TMPDIR"/aws_expires
+        # Convert the given date string to Unix epoch time and collect offset info
+        set -l date_string (cat "$TMPDIR"/aws_expires | sed 's/://g')
+        set -l unix_epoch (date -j -f "%Y-%m-%dT%H%M%S%z" "$date_string" "+%s")
+        set -l current_time (date "+%s")
+        set -l difference (math $unix_epoch - $current_time)
+        if test $difference -gt 0
+            set -l remaining_time (convert_time_remainder $difference)
+            echo (set_color 0086b3)"(Role: $remaining_time)"(set_color normal)
+        end
+    end
+end
+{{ end -}}
 
 #Add name of virtualenv to prompt... in color.
 function virtualenv_prompt --description 'Shows current virtual environment, if present'
@@ -17,11 +42,17 @@ function status_and_time --description 'Shows timestamp and status of previous c
     echo (date '+%H:%M:%S') [$status]" "
 end
 
+{{ if eq .chezmoi.hostname "CUL-1664" }}
 #Bring it all together
+function fish_prompt --description 'Write out the prompt'
+    printf '%s %s%s%s %s%s%s> ' (set_color ccb3ff)(echo $PROPHOSTNAME)(set_color normal) (set_color 63C563) (prompt_pwd) (set_color normal) (display_countdown) (virtualenv_prompt) (fish_git_prompt)
+end
+{{ else }}
 function fish_prompt --description 'Write out the prompt'
     printf '%s %s%s%s%s%s> ' (set_color ccb3ff)(echo $PROPHOSTNAME)(set_color normal) (set_color 63C563) (prompt_pwd) (set_color normal) (virtualenv_prompt) (fish_git_prompt)
 end
-{{- end -}}
+{{ end -}}
+{{ end -}}
 {{- if eq .chezmoi.os "linux" -}}
 #Add name of virtualenv to prompt... in color.
 function create_prompt --description 'Provide obvious indication of root'
@@ -47,4 +78,4 @@ end
 function fish_prompt --description 'Write out the prompt'
     create_prompt
 end
-{{- end -}}
+{{ end -}}
