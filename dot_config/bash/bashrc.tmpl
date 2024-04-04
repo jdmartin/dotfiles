@@ -60,12 +60,12 @@ function aws_with_session() {
    local AWSPATH=$(unalias aws && which aws)
    
    if ! determine_if_role_expired "$ROLE_EXPIRES_TIME"; then
-      printf "No existing role found. Using session obtained from last use of 'mfa'...\n"
+      printf "No existing role found. Using session obtained from last use of 'mfa'...\n" >&2
       local AWS_ACCESS_KEY_ID=$(op read "op://private/aws_session/aws_access_key")
       local AWS_SECRET_ACCESS_KEY=$(op read "op://private/aws_session/aws_secret_access_key")
       local AWS_SESSION_TOKEN=$(op read "op://private/aws_session/aws_session_token")
    else
-      printf "Using role '%s'. To deactivate this role, run 'manage-roles'.\n" $(op read "op://private/aws_session/aws_role_name")
+      printf "Using role '%s'. To deactivate this role, run 'manage-roles'.\n" $(op read "op://private/aws_session/aws_role_name") >&2
       local AWS_ACCESS_KEY_ID=$(op read "op://private/aws_session/aws_role_access_key")
       local AWS_SECRET_ACCESS_KEY=$(op read "op://private/aws_session/aws_role_secret_access_key")
       local AWS_SESSION_TOKEN=$(op read "op://private/aws_session/aws_role_session_token")
