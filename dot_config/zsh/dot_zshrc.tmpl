@@ -147,3 +147,67 @@ function virtualenv_info() {
 #Custom location for zcompdump
 compinit -d "$HOME"/.config/zsh/cache/zcompdump-$ZSH_VERSION;
 
+{{- if eq .chezmoi.hostname "CUL-1664" -}}
+## This creates a function that, when aliased to terraform, takes the session values from 1password and executes terraform
+function terraform_with_aws_session() {
+   local ROLE_EXPIRES_TIME=$(op read "op://private/aws_session/aws_role_expires")
+
+   if  [[ -z "$ROLE_EXPIRES_TIME" ]] || ! determine_if_role_expired "$ROLE_EXPIRES_TIME"; then
+      printf "No existing role found. Using session obtained from last use of 'mfa'...\n"
+      local AWS_ACCESS_KEY_ID=$(op read "op://private/aws_session/aws_access_key")
+      local AWS_SECRET_ACCESS_KEY=$(op read "op://private/aws_session/aws_secret_access_key")
+      local AWS_SESSION_TOKEN=$(op read "op://private/aws_session/aws_session_token")
+   else
+      printf "Using role '%s'. To deactivate this role, run 'manage-roles'.\n" $(op read "op://private/aws_session/aws_role_name") >&2
+      local AWS_ACCESS_KEY_ID=$(op read "op://private/aws_session/aws_role_access_key")
+      local AWS_SECRET_ACCESS_KEY=$(op read "op://private/aws_session/aws_role_secret_access_key")
+      local AWS_SESSION_TOKEN=$(op read "op://private/aws_session/aws_role_session_token")
+   fi
+
+   AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" \
+   AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
+   AWS_SESSION_TOKEN="$AWS_SESSION_TOKEN" \
+   command terraform "$@"
+}
+
+function determine_if_role_expired () {
+   # Convert the given date string to Unix epoch time and collect offset info
+   date_string="$(echo $1 | sed 's/://g')"
+   unix_epoch="$(date -j -f "%Y-%m-%dT%H%M%S%z" "$date_string" "+%s")"
+   current_time=$(date "+%s")
+   difference=$(( unix_epoch - current_time ))
+   if [ $difference -gt 0 ]; then
+      return 0
+   else
+      return 1
+   fi
+}
+
+## This puts a wrapper around the aws command to populate it with your session token and keys
+function aws_with_session() {
+   #Check for existing role, prompt if still valid
+   local ROLE_EXPIRES_TIME=$(op read "op://private/aws_session/aws_role_expires")
+   local AWSPATH=$(unalias aws && which aws)
+
+   if  [[ -z "$ROLE_EXPIRES_TIME" ]] || ! determine_if_role_expired "$ROLE_EXPIRES_TIME"; then
+      printf "No existing role found. Using session obtained from last use of 'mfa'...\n" >&2
+      local AWS_ACCESS_KEY_ID=$(op read "op://private/aws_session/aws_access_key")
+      local AWS_SECRET_ACCESS_KEY=$(op read "op://private/aws_session/aws_secret_access_key")
+      local AWS_SESSION_TOKEN=$(op read "op://private/aws_session/aws_session_token")
+   else
+      printf "Using role '%s'. To deactivate this role, run 'manage-roles'.\n" $(op read "op://private/aws_session/aws_role_name") >&2
+      local AWS_ACCESS_KEY_ID=$(op read "op://private/aws_session/aws_role_access_key")
+      local AWS_SECRET_ACCESS_KEY=$(op read "op://private/aws_session/aws_role_secret_access_key")
+      local AWS_SESSION_TOKEN=$(op read "op://private/aws_session/aws_role_session_token")
+   fi
+
+   AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" \
+   AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
+   AWS_SESSION_TOKEN="$AWS_SESSION_TOKEN" \
+   "$AWSPATH" "$@"
+}
+
+# Alias definitions.
+alias terraform="terraform_with_aws_session"
+alias aws="aws_with_session"
+{{ end -}}
