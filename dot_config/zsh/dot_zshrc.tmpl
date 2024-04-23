@@ -146,8 +146,7 @@ function virtualenv_info() {
 
 #Custom location for zcompdump
 compinit -d "$HOME"/.config/zsh/cache/zcompdump-$ZSH_VERSION;
-
-{{- if eq .chezmoi.hostname "CUL-1664" }}
+{{ if eq .chezmoi.hostname "CUL-1664" }}
 ## This creates a function that, when aliased to terraform, takes the session values from 1password and executes terraform
 function terraform_with_aws_session() {
    local ROLE_EXPIRES_TIME=$(op read "op://private/aws_session/aws_role_expires")
