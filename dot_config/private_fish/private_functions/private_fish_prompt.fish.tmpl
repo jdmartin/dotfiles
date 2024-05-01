@@ -4,8 +4,8 @@
 function convert_time_remainder
     set total_seconds $argv[1]
 
-    set days (math --scale 0 "($total_seconds / 86400)")
-    set total_seconds (math --scale 0 "($total_seconds % 86400)")
+    #set days (math --scale 0 "($total_seconds / 86400)")
+    #set total_seconds (math --scale 0 "($total_seconds % 86400)")
 
     set hours (math --scale 0 "($total_seconds / 3600)")
     set total_seconds (math --scale 0 "($total_seconds % 3600)")
@@ -13,7 +13,7 @@ function convert_time_remainder
     set minutes (math --scale 0 "($total_seconds / 60)")
     set seconds (math --scale 0 "($total_seconds % 60)")
 
-    printf "%02d:%02d:%02d:%02d" $days $hours $minutes $seconds
+    printf "%02d:%02d:%02d" $hours $minutes $seconds
 end
 
 function display_countdown
