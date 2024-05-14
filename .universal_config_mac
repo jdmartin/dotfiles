@@ -41,7 +41,8 @@ export HOMEBREW_CASK_OPTS=--require-sha
 #No more hints
 export HOMEBREW_NO_ENV_HINTS=1
 #Remove unused deps on remove/uninstall
-export HOMEBREW_AUTOREMOVE=1
+#Below is now the default: HOMEBREW_NO_AUTOREMOVE=1 will disable this default.
+#export HOMEBREW_AUTOREMOVE=1
 
 #inputrc
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
