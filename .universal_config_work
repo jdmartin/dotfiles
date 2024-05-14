@@ -34,8 +34,6 @@ export HOMEBREW_INSTALL_BADGE="🦄"
 export HOMEBREW_CASK_OPTS=--require-sha
 #No more hints
 export HOMEBREW_NO_ENV_HINTS=1
-#Remove unused deps on remove/uninstall
-export HOMEBREW_AUTOREMOVE=1
 
 #inputrc
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
