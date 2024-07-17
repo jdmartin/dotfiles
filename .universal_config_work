@@ -34,6 +34,8 @@ export HOMEBREW_INSTALL_BADGE="🦄"
 export HOMEBREW_CASK_OPTS=--require-sha
 #No more hints
 export HOMEBREW_NO_ENV_HINTS=1
+#4.3 Attestation Enabled
+export HOMEBREW_VERIFY_ATTESTATIONS=1
 
 #inputrc
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
