@@ -19,8 +19,8 @@ export FZF_CTRL_R_OPTS="
     --preview 'echo {1..}'
     --preview-window up:hidden:wrap 
     --bind 'ctrl-/:change-preview-window(30%|60%|90%|)'
-    --bind 'ctrl-v:execute(echo {2..} | view - > /dev/tty)' 
+    --bind 'ctrl-v:execute(echo {1..} | view - > /dev/tty)' 
     --bind 'ctrl-t:track+clear-query' 
-    --bind 'ctrl-y:execute-silent(echo -n {1..} | pbcopy)+abort' 
+    --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' 
     --color header:italic 
     --header 'Press CTRL-Y to copy command into clipboard'"
