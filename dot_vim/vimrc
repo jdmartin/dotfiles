@@ -10,10 +10,8 @@ set noswapfile " Avoid cruft
 set backspace=indent,eol,start
 filetype plugin on " Added for Vimwiki
 
-" Allow mouse, except for insert mode.
-if has('mouse')
-    set mouse=nv
-endif
+" Allow mouse in all modes, hopefully excluding line nums on yank
+set mouse=a
 
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
