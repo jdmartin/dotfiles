@@ -25,3 +25,6 @@ nnoremap <leader>s :%s/
 
 "jump to next ALE error
 nmap <silent> <leader>e <Plug>(ale_next_wrap)
+
+" jump to the first ALE error
+nmap <silent> <leader>E :ALEFirst<CR>
