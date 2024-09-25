@@ -3,6 +3,7 @@
 .config/fish/emoji
 .config/fish/conf.d/emoji.fish
 .config/fish/conf.d/fzf.fish
+.config/fish/functions/advent.fish
 .config/fish/functions/figlet.fish
 .config/fish/functions/harlequin.fish
 .config/fish/functions/ls.fish
