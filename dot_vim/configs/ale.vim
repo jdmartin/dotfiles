@@ -10,4 +10,5 @@ let b:ale_linters={'python': ['pylint'],}
 let b:ale_fixers={'python': ['isort', 'pylint'],}
 let b:ale_fix_on_save = 1
 let b:ale_python_pylint_use_global = 1
+let b:ale_python_pylint_options = '--disable=E0401'
 
