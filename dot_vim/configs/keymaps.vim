@@ -28,3 +28,7 @@ nmap <silent> <leader>e <Plug>(ale_next_wrap)
 
 " jump to the first ALE error
 nmap <silent> <leader>E :ALEFirst<CR>
+
+" clear search
+nnoremap <leader><space> :noh<CR>
+
