@@ -7,3 +7,5 @@ color dracula
 
 " Highlight cursor: cursorline for horiz., cursorcolumn for vert.
 set cursorline
+highlight CursorLine cterm=NONE ctermbg=235 guibg=#3e3e3e
+
