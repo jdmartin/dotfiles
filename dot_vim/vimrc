@@ -8,6 +8,8 @@ set clipboard+=unnamed " Allow copying from Vim
 set selection=exclusive " Don't grab the gutter when selecting with the mouse in visual mode
 set noswapfile " Avoid cruft
 set backspace=indent,eol,start
+set wildmenu " Enable the wildmenu
+set wildmenu wildoptions=pum " Menu appears vertically
 filetype plugin on " Added for Vimwiki
 
 " Allow mouse in all modes, hopefully excluding line nums on yank
