@@ -17,4 +17,7 @@ let g:ale_python_pylint_options = '--disable=E0401'
 {{ end -}}
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
+let g:ale_pattern_options = {
+\   '\.env$': {'ale_enabled': 0}
+\ }
 
