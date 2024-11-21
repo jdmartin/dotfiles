@@ -19,3 +19,12 @@ let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
 let g:ale_pattern_options = { '\.env$': {'ale_enabled': 0} }
 
+" Check if a file has a Fish shebang and map it to the 'fish' filetype:
+augroup ale_ignore_fish
+    autocmd!
+    " Map files ending in .sh with Fish shebang to the fish filetype
+    autocmd BufRead,BufNewFile *.sh if getline(1) =~ '^#!/usr/bin/env fish' | set filetype=fish | endif
+augroup END
+
+" Disable shellcheck for fish files
+let g:ale_disable_linter = {'fish': ['shellcheck']}
