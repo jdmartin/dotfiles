@@ -1,6 +1,6 @@
 {{- if eq .chezmoi.os "darwin" -}}
 function temp --description "Create a temporary directory and switch to it."
-    set temp_name temp-(uuidgen | tr '[:upper:]' '[:lower:]')
+    set temp_name temp-(uuidgen | tr '[:upper:]' '[:lower:]' | cut -c-13)
     command mkdir "/private/tmp/$temp_name"
     cd "/private/tmp/$temp_name"
 end
