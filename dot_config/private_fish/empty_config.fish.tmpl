@@ -1,8 +1,10 @@
 #Import Universal Config
 source ~/.config/.universal_config
 {{if eq .chezmoi.os "darwin" -}}
-##iTerm integration (Commenting this out seems to have fixed my weird emoji_prompt / backspace issues)
-source "$XDG_CONFIG_HOME"/iterm2/.iterm2_shell_integration.fish
+if test "$TERM_PROGRAM" = "iTerm.app"
+    ##iTerm integration (Commenting this out seems to have fixed my weird emoji_prompt / backspace issues)
+    source "$XDG_CONFIG_HOME"/iterm2/.iterm2_shell_integration.fish
+end
 {{ end }}
 set -x PROPHOSTNAME (prompt_hostname | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
 
