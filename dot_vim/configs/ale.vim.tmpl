@@ -11,6 +11,8 @@ let g:ale_linters={ "python": ["ruff"] }
 let g:ale_fixers = {
 \   'python': ['ruff'],
 \   'fish': ['fish_indent'],
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
 \ }
 {{ else }}
 let g:ale_linters={ "python": ["pylint"] }
