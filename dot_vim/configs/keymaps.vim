@@ -32,3 +32,5 @@ nmap <silent> <leader>E :ALEFirst<CR>
 " clear search
 nnoremap <leader><space> :noh<CR>
 
+" Run jq to pretty print json
+nnoremap <Leader>j :%!jq .<CR>
