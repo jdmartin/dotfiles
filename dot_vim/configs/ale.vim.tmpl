@@ -7,7 +7,7 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_completion_enabled = 1
 {{- if eq .chezmoi.os "darwin" }}
-let g:ale_linters={ "python": ["ruff"] }
+let g:ale_linters={ "python": ["ruff", "bandit"] }
 let g:ale_fixers = {
 \   'python': ['ruff'],
 \   'fish': ['fish_indent'],
@@ -15,7 +15,7 @@ let g:ale_fixers = {
 \   'css': ['prettier'],
 \ }
 {{ else }}
-let g:ale_linters={ "python": ["pylint"] }
+let g:ale_linters={ "python": ["pylint", "bandit"] }
 let g:ale_fixers = {
 \   'python': ['isort', 'pylint'],
 \   'fish': ['fish_indent'],
