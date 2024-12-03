@@ -30,6 +30,7 @@ call plug#begin()
     source ~/.vim/configs/airline.vim
     source ~/.vim/configs/commentary.vim
     source ~/.vim/configs/nerdtree.vim
+    source ~/.vim/configs/signature.vim
     source ~/.vim/configs/surround.vim
     source ~/.vim/configs/vimwiki.vim
 
