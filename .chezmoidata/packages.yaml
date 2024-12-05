@@ -10,3 +10,6 @@ packages:
     - 'shellcheck'
     casks:
     - '1password-cli'
+  linux:
+    apt:
+      - 'fish'
