@@ -1,0 +1,12 @@
+packages:
+  darwin:
+    brews:
+    - 'bash'
+    - 'fish'
+    - 'fzf'
+    - 'gh'
+    - 'gnu-sed'
+    - 'grep'
+    - 'shellcheck'
+    casks:
+    - '1password-cli'
