@@ -33,7 +33,9 @@ nmap <silent> <leader>E :ALEFirst<CR>
 nnoremap <leader><space> :noh<CR>
 
 " Run jq to pretty print json
-nnoremap <Leader>j :%!jq .<CR>
+if executable('jq')
+    nnoremap <Leader>j :%!jq .<CR>
+endif
 
 " Select all
 nnoremap <Leader>a ggVG<CR>
