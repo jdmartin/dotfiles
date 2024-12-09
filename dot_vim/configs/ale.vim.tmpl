@@ -13,12 +13,14 @@ let g:ale_fixers = {
 \   'fish': ['fish_indent'],
 \   'javascript': ['prettier'],
 \   'css': ['prettier'],
+\   'go': ['gofmt'],
 \ }
 {{ else }}
 let g:ale_linters={ "python": ["pylint", "bandit"] }
 let g:ale_fixers = {
 \   'python': ['isort', 'pylint'],
 \   'fish': ['fish_indent'],
+\   'go': ['gofmt'],
 \ }
 let g:ale_python_pylint_use_global = 1
 let g:ale_python_pylint_options = '--disable=E0401'
