@@ -81,21 +81,21 @@ export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 export POWERSHELL_TELEMETRY_OPTOUT=1
 
 #Python
-export PIPX_HOME="$HOME"/.local/pipx/
-export PIP_CONFIG_HOME="$XDG_CONFIG_HOME"/.pip/pip.conf
-export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/.pythonrc
-export POETRY_HOME="$XDG_CONFIG_HOME"/python/poetry
-export NLTK_DATA="$XDG_CONFIG_HOME"/python/nltk_data
-export PYLINTHOME="$XDG_CONFIG_HOME"/python/.pylint.d
 export IPYTHONDIR="$XDG_CONFIG_HOME"/ipython
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
-export PLOTLY_DIR="$XDG_CONFIG_HOME"/plotly
-export SETUPTOOLS_USE_DISTUTILS=stdlib
-export PYENV_ROOT="$XDG_CONFIG_HOME"/pyenv
+export NLTK_DATA="$XDG_CONFIG_HOME"/python/nltk_data
 export PIPX_DEFAULT_PYTHON=/usr/local/bin/python3
-export RUFF_CACHE_DIR="$XDG_CACHE_HOME"/ruff-cache
+export PIPX_HOME="$HOME"/.local/pipx/
+export PIP_CONFIG_HOME="$XDG_CONFIG_HOME"/.pip/pip.conf
+export PLOTLY_DIR="$XDG_CONFIG_HOME"/plotly
+export POETRY_HOME="$XDG_CONFIG_HOME"/python/poetry
+export PYENV_ROOT="$XDG_CONFIG_HOME"/pyenv
+export PYLINTHOME="$XDG_CONFIG_HOME"/python/.pylint.d
 export PYLINTRC="$XDG_CONFIG_HOME"/python/.pylintrc
+export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/.pythonrc
+export RUFF_CACHE_DIR="$XDG_CACHE_HOME"/ruff-cache
+export UV_LINK_MODE=copy
 
 #Ruby
 export GEM_HOME="$HOME"/.local/gem
