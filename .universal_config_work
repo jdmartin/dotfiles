@@ -70,7 +70,6 @@ export IPYTHONDIR="$XDG_CONFIG_HOME"/ipython
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
 export PLOTLY_DIR="$XDG_CONFIG_HOME"/plotly
-export SETUPTOOLS_USE_DISTUTILS=stdlib
 export PYENV_ROOT="$XDG_CONFIG_HOME"/pyenv
 export PIPX_DEFAULT_PYTHON=/usr/local/bin/python3
 export RUFF_CACHE_DIR="$XDG_CACHE_HOME"/ruff-cache
