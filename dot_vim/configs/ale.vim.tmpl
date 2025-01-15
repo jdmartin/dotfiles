@@ -15,6 +15,10 @@ let g:ale_fixers = {
 \   'css': ['prettier'],
 \   'go': ['gofmt'],
 \ }
+
+if executable('xmllint')
+    let g:ale_fixers['xml'] = ['xmllint']
+endif
 {{ else }}
 let g:ale_linters={ "python": ["pylint", "bandit"] }
 let g:ale_fixers = {
@@ -22,6 +26,10 @@ let g:ale_fixers = {
 \   'fish': ['fish_indent'],
 \   'go': ['gofmt'],
 \ }
+
+if executable('xmllint')
+    let g:ale_fixers['xml'] = ['xmllint']
+endif
 let g:ale_python_pylint_use_global = 1
 let g:ale_python_pylint_options = '--disable=E0401'
 {{ end -}}
