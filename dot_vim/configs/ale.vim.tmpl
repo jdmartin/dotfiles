@@ -1,41 +1,33 @@
 Plug 'dense-analysis/ale'
 
-"Plugin Settings
+" Plugin Settings
 let g:ale_warn_about_trailing_whitespace = 0  " Disable whitespace warnings
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 0
+
 {{- if eq .chezmoi.os "darwin" }}
-let g:ale_linters={ "python": ["ruff", "bandit"] }
-let g:ale_fixers = {
-\   'python': ['ruff'],
-\   'fish': ['fish_indent'],
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
-\   'go': ['gofmt'],
+let g:ale_linters = {
+\   'python': ['bandit'],
+\   'xml': ['xmllint']
 \ }
-
-if executable('xmllint')
-    let g:ale_fixers['xml'] = ['xmllint']
-endif
+let g:ale_fixers = {}
 {{ else }}
-let g:ale_linters={ "python": ["pylint", "bandit"] }
-let g:ale_fixers = {
-\   'python': ['isort', 'pylint'],
-\   'fish': ['fish_indent'],
-\   'go': ['gofmt'],
+let g:ale_linters = {
+\   'python': ['bandit'],   " Only use Bandit for Python
+\   'xml': ['xmllint']      " Only use xmllint for XML
 \ }
-
-if executable('xmllint')
-    let g:ale_fixers['xml'] = ['xmllint']
-endif
-let g:ale_python_pylint_use_global = 1
-let g:ale_python_pylint_options = '--disable=E0401'
+let g:ale_fixers = {}  " No fixers, since CoC handles formatting
 {{ end -}}
-let g:ale_fix_on_save = 1
+
+let g:ale_fix_on_save = 0  " Let CoC handle formatting
 let g:ale_lint_on_save = 1
 let g:ale_pattern_options = { '\.env$': {'ale_enabled': 0} }
+
+" Disable ALE for everything except Bandit and xmllint
+let g:ale_enabled = 1
+let g:ale_linter_aliases = {'fish': []} " Prevent ALE from running shellcheck on fish files
 
 " Check if a file has a Fish shebang and map it to the 'fish' filetype:
 augroup ale_ignore_fish
@@ -44,5 +36,6 @@ augroup ale_ignore_fish
     autocmd BufRead,BufNewFile *.sh if getline(1) =~ '^#!/usr/bin/env fish' | set filetype=fish | endif
 augroup END
 
-" Disable shellcheck for fish files
-let g:ale_disable_linter = {'fish': ['shellcheck']}
+" Disable ALE linting for all other file types
+let g:ale_linters_explicit = 1
+

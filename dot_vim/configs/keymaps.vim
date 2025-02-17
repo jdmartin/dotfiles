@@ -7,6 +7,11 @@ nnoremap <Leader>, :qa!<CR>:FloatermKill<CR>
 xnoremap <Tab> :s/^/\t/<CR>:nohl<CR>
 xnoremap <S-Tab> :s/^\t//<CR>:nohl<CR>
 
+" Use Tab for CoC completion in insert mode
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent><expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+
 "open terminal below all splits
 cabbrev bterm bo term
 
@@ -23,11 +28,9 @@ nnoremap gf :tabe <cfile><CR>
 "map :%s/ to <leader>s
 nnoremap <leader>s :%s/
 
-"jump to next ALE error
-nmap <silent> <leader>e <Plug>(ale_next_wrap)
-
-" jump to the first ALE error
-nmap <silent> <leader>E :ALEFirst<CR>
+" CoC error jumpint
+nmap <silent> <leader>e <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>E <Plug>(coc-diagnostic-prev)
 
 " clear search
 nnoremap <leader><space> :noh<CR>
