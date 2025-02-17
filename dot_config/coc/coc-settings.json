@@ -1,0 +1,87 @@
+{
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"]
+    },
+    "go": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".git"],
+      "trace.server": "verbose",
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true,
+        "completeUnimported": true,
+        "diagnostics": true
+      }
+    },
+    "python": {
+      "python.pythonPath": "python3",
+      "python.analysis.autoImportCompletions": true,
+      "python.formatting.provider": "ruff",
+      "python.linting.enabled": true,
+      "python.linting.ruffEnabled": true,
+      "python.sortImports": "ruff",
+      "python.sortImports.path": "ruff",
+      "ruff.args": ["--disable-rule=E302"],
+      "ruff.enable": true
+    },
+    "tsserver": {
+      "module": "typescript-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["typescript", "javascript", "javascriptreact", "typescriptreact"],
+      "rootPatterns": ["package.json", "tsconfig.json", "jsconfig.json", ".git"],
+      "settings": {
+        "javascript": {
+          "format.enable": true,
+          "suggest.autoImports": true
+        },
+        "typescript": {
+          "format.enable": true,
+          "suggest.autoImports": true
+        }
+      }
+    }
+  },
+  "coc.preferences.formatOnSave": true,
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "json", "go", "sh", "fish", "python"],
+  "diagnostic-languageserver": {
+    "filetypes": {
+      "sh": "shellcheck",
+      "xml": "xmllint"
+    },
+    "linters": {
+      "shellcheck": {
+        "command": "shellcheck",
+        "args": ["--format=gcc", "-"],
+        "sourceName": "shellcheck",
+        "formatPattern": [
+          "^[^:]+:(\\d+):(\\d+):\\s+(.*)$",
+          {
+            "line": 1,
+            "column": 2,
+            "message": 3
+          }
+        ]
+     }
+  },
+  "coc.preferences.diagnostic.autoRefresh": true,
+  "coc.preferences.autoInstallLanguageServers": true,
+  "go.formatTool": "gofmt",
+  "go.formatOnSave": true,
+  "prettier.requireConfig": false,
+  "prettier.enable": true,
+  "eslint.autoFixOnSave": true,
+  "coc.preferences.triggerCompletionWait": 100,
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.messageTarget": "echo",
+  "diagnostic.displayByAle": false,
+  "diagnostic.floatConfig": {
+    "border": "rounded",
+    "maxWidth": 80
+  }
+}
+
