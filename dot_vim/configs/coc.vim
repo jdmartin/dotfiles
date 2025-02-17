@@ -14,3 +14,11 @@ autocmd BufWritePre *.py :CocCommand python.sortImports
 
 " Autoformat CSS/SCSS on save using Prettier
 autocmd BufWritePre *.css,*.scss,*.sass :CocCommand prettier.formatFile
+
+let g:coc_global_extensions = [
+\ 'coc-go',
+\ 'coc-prettier',
+\ 'coc-pyright',
+\ 'coc-sh',
+\ 'coc-tsserver'
+\ ]

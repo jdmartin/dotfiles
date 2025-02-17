@@ -67,7 +67,6 @@
      }
   },
   "coc.preferences.diagnostic.autoRefresh": true,
-  "coc.preferences.autoInstallLanguageServers": true,
   "go.formatTool": "gofmt",
   "go.formatOnSave": true,
   "prettier.requireConfig": false,
