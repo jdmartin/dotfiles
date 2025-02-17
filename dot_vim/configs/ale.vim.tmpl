@@ -15,10 +15,10 @@ let g:ale_linters = {
 let g:ale_fixers = {}
 {{ else }}
 let g:ale_linters = {
-\   'python': ['bandit'],   " Only use Bandit for Python
-\   'xml': ['xmllint']      " Only use xmllint for XML
+\   'python': ['bandit'],
+\   'xml': ['xmllint'] 
 \ }
-let g:ale_fixers = {}  " No fixers, since CoC handles formatting
+let g:ale_fixers = {}
 {{ end -}}
 
 let g:ale_fix_on_save = 0  " Let CoC handle formatting
@@ -27,7 +27,7 @@ let g:ale_pattern_options = { '\.env$': {'ale_enabled': 0} }
 
 " Disable ALE for everything except Bandit and xmllint
 let g:ale_enabled = 1
-let g:ale_linter_aliases = {'fish': []} " Prevent ALE from running shellcheck on fish files
+let g:ale_linter_aliases = {'fish': []}
 
 " Check if a file has a Fish shebang and map it to the 'fish' filetype:
 augroup ale_ignore_fish
