@@ -5,6 +5,14 @@
       "args": ["start"],
       "filetypes": ["sh"]
     },
+    "intelephense": {
+      "command": "intelephense",
+      "args": ["--stdio"],
+      "filetypes": ["php"],
+      "initializationOptions": {
+        "storagePath": "/tmp/intelephense"
+      }
+    },
     "go": {
       "command": "gopls",
       "rootPatterns": ["go.mod", ".git"],

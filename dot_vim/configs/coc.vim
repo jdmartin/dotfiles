@@ -16,6 +16,7 @@ autocmd BufWritePre *.py :CocCommand python.sortImports
 autocmd BufWritePre *.css,*.scss,*.sass :CocCommand prettier.formatFile
 
 let g:coc_global_extensions = [
+\ '@yaegassy/coc-intelephense',
 \ 'coc-go',
 \ 'coc-html',
 \ 'coc-prettier',
