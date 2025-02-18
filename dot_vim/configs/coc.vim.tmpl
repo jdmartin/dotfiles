@@ -16,12 +16,24 @@ autocmd BufWritePre *.py :CocCommand python.sortImports
 autocmd BufWritePre *.css,*.scss,*.sass :CocCommand prettier.formatFile
 
 let g:coc_global_extensions = [
+{{- if lookPath "php" }}
 \ '@yaegassy/coc-intelephense',
+{{- end }}
+{{- if lookPath "go" }}
 \ 'coc-go',
-\ 'coc-html',
+{{- end }}
+{{- if lookPath "node" }}
 \ 'coc-prettier',
+{{- end }}
+{{- if lookPath "python3" }}
 \ 'coc-pyright',
+{{- end }}
+{{- if lookPath "rustc" }}
 \ 'coc-rust-analyzer',
-\ 'coc-sh',
-\ 'coc-tsserver'
+{{- end }}
+{{- if lookPath "node" }}
+\ 'coc-tsserver',
+{{- end }}
+\ 'coc-html',
+\ 'coc-sh'
 \ ]
