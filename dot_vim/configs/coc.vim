@@ -17,6 +17,7 @@ autocmd BufWritePre *.css,*.scss,*.sass :CocCommand prettier.formatFile
 
 let g:coc_global_extensions = [
 \ 'coc-go',
+\ 'coc-html',
 \ 'coc-prettier',
 \ 'coc-pyright',
 \ 'coc-sh',

@@ -27,6 +27,11 @@
       "ruff.args": ["--disable-rule=E302"],
       "ruff.enable": true
     },
+    "rubocop": {
+      "command": "rubocop",
+      "args": ["--lsp"],
+      "filetypes": ["ruby"]
+    },
     "tsserver": {
       "module": "typescript-language-server",
       "args": ["--stdio"],
