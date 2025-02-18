@@ -1,10 +1,6 @@
 {
   "languageserver": {
-    "bash": {
-      "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes": ["sh"]
-    },
+    {{- if lookPath "php" }}
     "intelephense": {
       "command": "intelephense",
       "args": ["--stdio"],
@@ -13,6 +9,8 @@
         "storagePath": "/tmp/intelephense"
       }
     },
+    {{- end }}
+    {{- if lookPath "go" }}
     "go": {
       "command": "gopls",
       "rootPatterns": ["go.mod", ".git"],
@@ -22,8 +20,12 @@
         "usePlaceholders": true,
         "completeUnimported": true,
         "diagnostics": true
-      }
+      },
+      "go.formatTool": "gofmt",
+      "go.formatOnSave": true
     },
+    {{- end }}
+    {{- if lookPath "python3" }}
     "python": {
       "python.pythonPath": "python3",
       "python.analysis.autoImportCompletions": true,
@@ -35,11 +37,15 @@
       "ruff.args": ["--disable-rule=E302"],
       "ruff.enable": true
     },
+    {{- end }}
+    {{- if lookPath "ruby" }}
     "rubocop": {
       "command": "rubocop",
       "args": ["--lsp"],
       "filetypes": ["ruby"]
     },
+    {{- end }}
+    {{- if lookPath "node" }}
     "tsserver": {
       "module": "typescript-language-server",
       "args": ["--stdio"],
@@ -55,6 +61,12 @@
           "suggest.autoImports": true
         }
       }
+    },
+    {{- end }}
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"]
     }
   },
   "coc.preferences.formatOnSave": true,
@@ -80,8 +92,6 @@
      }
   },
   "coc.preferences.diagnostic.autoRefresh": true,
-  "go.formatTool": "gofmt",
-  "go.formatOnSave": true,
   "prettier.requireConfig": false,
   "prettier.enable": true,
   "eslint.autoFixOnSave": true,
