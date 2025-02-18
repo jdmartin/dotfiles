@@ -28,9 +28,7 @@ call plug#begin()
 
     source ~/.vim/configs/ale.vim
     source ~/.vim/configs/airline.vim
-    if executable('node')
-        source ~/.vim/configs/coc.vim
-    endif
+    source ~/.vim/configs/coc.vim
     source ~/.vim/configs/commentary.vim
     source ~/.vim/configs/nerdtree.vim
     source ~/.vim/configs/signature.vim
