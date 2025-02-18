@@ -40,6 +40,11 @@
       "args": ["--lsp"],
       "filetypes": ["ruby"]
     },
+    "rust": {
+      "command": "rust-analyzer",
+      "filetypes": ["rust"],
+      "rootPatterns": ["Cargo.toml"]
+    },
     "tsserver": {
       "module": "typescript-language-server",
       "args": ["--stdio"],
