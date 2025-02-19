@@ -42,9 +42,9 @@ export HISTFILE="$XDG_CONFIG_HOME"/.sh_history
 #ZSH
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 
+{{- if eq .chezmoi.os "darwin" }}
 ###### Mac-only ######
 
-{{ if eq .chezmoi.os "darwin" }}
 #conan
 export CONAN_USER_HOME="$XDG_DATA_HOME"/conan
 
@@ -110,9 +110,9 @@ export SQLMAP_OUTPUT_PATH="$XDG_CONFIG_HOME"/sqlmap
 #virtualenvs
 export WORKON_HOME="$XDG_DATA_HOME"/virtualenvs
 
+{{- if eq .chezmoi.hostname "neptune" }}
 ###### Specific to Personal Machine #######
 
-{{ if eq .chezmoi.hostname "neptune" }}
 #Bat
 export BAT_THEME="Dracula"
 
