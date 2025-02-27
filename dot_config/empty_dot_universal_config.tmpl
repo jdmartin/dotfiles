@@ -25,13 +25,14 @@ export LESSHISTFILE="$XDG_CONFIG_HOME"/.lesshst
 #man
 export GROFF_NO_SGR=1
 export MANPAGER='/usr/bin/less -g -s -M +Gg'
-
+{{ if lookPath "parallel" }}
 #parallel
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
-
+{{ end }}
+{{ if lookPath "pwsh" }}
 #Powershell
 export POWERSHELL_TELEMETRY_OPTOUT=1
-
+{{ end }}
 #Rust
 export CARGO_HOME="$XDG_CONFIG_HOME"/rust/.cargo
 export RUSTUP_HOME="$XDG_CONFIG_HOME"/rust/rustup
@@ -86,8 +87,10 @@ export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
 export NLTK_DATA="$XDG_CONFIG_HOME"/python/nltk_data
 export PIP_CONFIG_HOME="$XDG_CONFIG_HOME"/.pip/pip.conf
+{{- if lookPath "pipx" }}
 export PIPX_DEFAULT_PYTHON=/usr/local/bin/python3
 export PIPX_HOME="$HOME"/.local/pipx/
+{{ end }}
 export PLOTLY_DIR="$XDG_CONFIG_HOME"/plotly
 export POETRY_HOME="$XDG_CONFIG_HOME"/python/poetry
 export PYENV_ROOT="$XDG_CONFIG_HOME"/pyenv
@@ -103,10 +106,10 @@ export SSH_AUTH_SOCK="$HOME"/Library/Group\ Containers/2BUA8C4S2C.com.1password/
 
 #sqlite
 export SQLITE_HISTORY="$XDG_CONFIG_HOME"/.sqlite_history
-
+{{ if lookPath "sqlmap" }}
 #Sqlmap
 export SQLMAP_OUTPUT_PATH="$XDG_CONFIG_HOME"/sqlmap
-
+{{ end }}
 #virtualenvs
 export WORKON_HOME="$XDG_DATA_HOME"/virtualenvs
 
