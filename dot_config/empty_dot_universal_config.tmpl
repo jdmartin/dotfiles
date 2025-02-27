@@ -16,23 +16,13 @@ export LANG=en_US.UTF-8
 export __CF_USER_TEXT_ENCODING=0x0:0:0
 {{- end }}
 
-#GNUPG
-export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-
 #Less
 export LESSHISTFILE="$XDG_CONFIG_HOME"/.lesshst
 
 #man
 export GROFF_NO_SGR=1
 export MANPAGER='/usr/bin/less -g -s -M +Gg'
-{{ if lookPath "parallel" }}
-#parallel
-export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
-{{ end }}
-{{ if lookPath "pwsh" }}
-#Powershell
-export POWERSHELL_TELEMETRY_OPTOUT=1
-{{ end }}
+
 #Rust
 export CARGO_HOME="$XDG_CONFIG_HOME"/rust/.cargo
 export RUSTUP_HOME="$XDG_CONFIG_HOME"/rust/rustup
@@ -58,7 +48,7 @@ export HOMEBREW_INSTALL_BADGE="🦄"
 export HOMEBREW_CASK_OPTS=--require-sha
 #No more hints
 export HOMEBREW_NO_ENV_HINTS=1
-{{ if eq .chezmoi.hostname "neptune" }}
+{{- if eq .chezmoi.hostname "neptune" }}
 #4.3 Attestation Enabled
 export HOMEBREW_VERIFY_ATTESTATIONS=1
 {{- end }}
@@ -144,3 +134,18 @@ export BUNDLE_USER_CACHE="$XDG_CONFIG_HOME"/bundle
 export BUNDLE_USER_PLUGIN="$XDG_CONFIG_HOME"/bundle
 export RBENV_ROOT="$XDG_CONFIG_HOME"/.rbenv
 {{- end }}
+
+###### Infrequently Encountered Things ######
+{{- if lookPath "gpg2" -}}
+#GNUPG
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+{{ end }}
+{{- if lookPath "parallel" }}
+#parallel
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
+{{ end }}
+{{- if lookPath "pwsh" }}
+#Powershell
+export POWERSHELL_TELEMETRY_OPTOUT=1
+{{- end }}
+
