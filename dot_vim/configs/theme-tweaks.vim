@@ -15,8 +15,3 @@ if $TERM_PROGRAM =~ "iTerm"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 
-if &term =~ "xterm" || &term =~ "tmux"
-    let &t_SI = "\e[5 q"  " Blinking bar in insert mode
-    let &t_EI = "\e[2 q"  " Block cursor in normal mode
-endif
-
