@@ -1,6 +1,5 @@
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'chriskempson/base16-vim'
 
 let g:airline_theme='base16_snazzy'
 let g:airline#extensions#ale#enabled = 1
