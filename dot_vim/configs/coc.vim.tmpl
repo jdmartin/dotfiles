@@ -15,6 +15,9 @@ autocmd BufWritePre *.py :CocCommand python.sortImports
 " Autoformat CSS/SCSS on save using Prettier
 autocmd BufWritePre *.css,*.scss,*.sass :CocCommand prettier.formatFile
 
+" Completion options
+set completeopt=menuone
+
 let g:coc_global_extensions = [
 {{- if lookPath "php" }}
 \ '@yaegassy/coc-intelephense',
