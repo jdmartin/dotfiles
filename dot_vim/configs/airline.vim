@@ -10,14 +10,3 @@ let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#wordcount#enabled = 1
 let g:airline#extensions#wordcount#filetypes = '\vnotes|help|markdown|rst|org|text|asciidoc|tex|mail'
 
-let g:airline#extensions#cursormode#enabled = 1
-
-let g:cursormode_mode_func = 'mode'
-let g:cursormode_color_map = {
-\ "n": '#bd93f9',
-\ "i": '#98c379',
-\ "R": '#e06c75',
-\ "v": '#61afef',
-\ "V": '#61afef',
-\ "\<C-V>": '#61afef',
-\ }
