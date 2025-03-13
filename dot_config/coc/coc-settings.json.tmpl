@@ -1,41 +1,76 @@
 {
+  "coc.preferences.formatOnSave": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.messageTarget": "echo",
+  "diagnostic.displayByAle": false,
+  "diagnostic.autoRefresh": true,
+  "suggest.triggerCompletionWait": 5,
+  {{- if lookPath "php" }}
   "languageserver": {
-    {{- if lookPath "php" }}
     "intelephense": {
       "command": "intelephense",
-      "args": ["--stdio"],
-      "filetypes": ["php"],
-      "initializationOptions": {
-        "storagePath": "/tmp/intelephense"
-      }
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "php"
+      ],
+      "rootPatterns": [
+        "composer.json",
+        ".git/"
+      ],
+      "trace.server": "verbose",
+      "enable": true
     },
     {{- end }}
     {{- if lookPath "go" }}
     "go": {
       "command": "gopls",
-      "rootPatterns": ["go.mod", ".git"],
+      "rootPatterns": [
+        "go.mod",
+        ".git"
+      ],
       "trace.server": "verbose",
-      "filetypes": ["go"],
+      "filetypes": [
+        "go"
+      ],
       "initializationOptions": {
         "usePlaceholders": true,
         "completeUnimported": true,
         "diagnostics": true
       },
-      "go.formatTool": "gofmt",
-      "go.formatOnSave": true
+      "settings": {
+        "gopls": {
+          "analyses": {
+            "unusedparams": true,
+            "shadow": true
+          },
+          "staticcheck": true
+        }
+      }
     },
     {{- end }}
     {{- if lookPath "python3" }}
     "python": {
-      "python.pythonPath": "python3",
-      "python.analysis.autoImportCompletions": true,
-      "python.formatting.provider": "ruff",
-      "python.linting.enabled": true,
-      "python.linting.ruffEnabled": true,
-      "python.sortImports": "ruff",
-      "python.sortImports.path": "ruff",
-      "ruff.args": ["--disable-rule=E302"],
-      "ruff.enable": true
+      "command": "ruff",
+      "filetypes": [
+        "py"
+      ],
+      "settings": {
+        "python": {
+          "pythonPath": "python3",
+          "analysis.autoImportCompletions": true,
+          "formatting.provider": "ruff",
+          "linting.enabled": true,
+          "linting.ruffEnabled": true,
+          "sortImports": true,
+          "sortImports.path": "ruff",
+          "ruff.args": [
+            "--disable-rule=E302"
+          ],
+          "ruff.enable": true
+        }
+      }
     },
     {{- end }}
     {{- if lookPath "rubocop" }}
@@ -48,9 +83,21 @@
     {{- if lookPath "node" }}
     "tsserver": {
       "module": "typescript-language-server",
-      "args": ["--stdio"],
-      "filetypes": ["typescript", "javascript", "javascriptreact", "typescriptreact"],
-      "rootPatterns": ["package.json", "tsconfig.json", "jsconfig.json", ".git"],
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "typescript",
+        "javascript",
+        "javascriptreact",
+        "typescriptreact"
+      ],
+      "rootPatterns": [
+        "package.json",
+        "tsconfig.json",
+        "jsconfig.json",
+        ".git"
+      ],
       "settings": {
         "javascript": {
           "format.enable": true,
@@ -65,45 +112,13 @@
     {{- end }}
     "bash": {
       "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes": ["sh"]
+      "args": [
+        "start"
+      ],
+      "filetypes": [
+        "sh"
+      ]
     }
-  },
-  "coc.preferences.formatOnSave": true,
-  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "json", "go", "sh", "fish", "python"],
-  "diagnostic-languageserver": {
-    "filetypes": {
-      "sh": "shellcheck",
-      "xml": "xmllint"
-    },
-    "linters": {
-      "shellcheck": {
-        "command": "shellcheck",
-        "args": ["--format=gcc", "-"],
-        "sourceName": "shellcheck",
-        "formatPattern": [
-          "^[^:]+:(\\d+):(\\d+):\\s+(.*)$",
-          {
-            "line": 1,
-            "column": 2,
-            "message": 3
-          }
-        ]
-     }
-  },
-  "coc.preferences.diagnostic.autoRefresh": true,
-  "prettier.requireConfig": false,
-  "prettier.enable": true,
-  "eslint.autoFixOnSave": true,
-  "coc.preferences.triggerCompletionWait": 100,
-  "javascript.suggest.autoImports": true,
-  "typescript.suggest.autoImports": true,
-  "diagnostic.virtualText": true,
-  "diagnostic.messageTarget": "echo",
-  "diagnostic.displayByAle": false,
-  "diagnostic.floatConfig": {
-    "border": "rounded",
-    "maxWidth": 80
   }
 }
 
