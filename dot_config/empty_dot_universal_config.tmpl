@@ -53,6 +53,13 @@ export HOMEBREW_VERIFY_ATTESTATIONS=1
 #Below is now the default: HOMEBREW_NO_AUTOREMOVE=1 will disable this default.
 #export HOMEBREW_AUTOREMOVE=1
 
+#GO
+export GOPATH=$HOME/.local/go
+export GOROOT=/usr/local/go
+export GOTELEMETRY=off
+export GOTOOLCHAIN=local
+export GO111MODULE=on
+
 #inputrc
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 
@@ -107,13 +114,6 @@ export BAT_THEME="Dracula"
 
 #dvdcss
 export DVDCSS_CACHE=$HOME/.local/dvdcss
-
-#GO
-export GOPATH=$HOME/.local/go
-export GOROOT=/usr/local/go
-export GOTELEMETRY=off
-export GOTOOLCHAIN=local
-export GO111MODULE=on
 
 #Java
 export JAVA_TOOL_OPTIONS="-Doracle.net.disableOob=true"
