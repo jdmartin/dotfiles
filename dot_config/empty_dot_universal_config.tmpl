@@ -148,4 +148,7 @@ export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 #Powershell
 export POWERSHELL_TELEMETRY_OPTOUT=1
 {{- end }}
-
+{{- if lookPath "rdap" }}
+export RDAP_OUTPUT=rendered-markdown
+export RDAP_PAGING=embedded
+{{- end }}

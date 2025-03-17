@@ -16,11 +16,14 @@ autocmd BufWritePre *.py :CocCommand python.sortImports
 autocmd BufWritePre *.css,*.scss,*.sass :CocCommand prettier.formatFile
 
 " Completion options
-set completeopt=menuone
+set completeopt=longest,menuone
 
 let g:coc_global_extensions = [
 {{- if lookPath "php" }}
 \ '@yaegassy/coc-intelephense',
+{{- end }}
+{{- if lookPath "clangd" }}
+\ 'coc-clangd',
 {{- end }}
 {{- if lookPath "go" }}
 \ 'coc-go',
