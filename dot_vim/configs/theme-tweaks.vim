@@ -7,7 +7,7 @@ color dracula
 
 " Highlight cursor: cursorline for horiz., cursorcolumn for vert.
 set cursorline
-highlight CursorLine cterm=NONE ctermbg=235 guibg=#3e3e3e
+highlight CursorLine cterm=NONE ctermbg=242 guibg=#3e3e3e
 
 " Change cursor shape between insert and normal mode in iTerm2.app
 if $TERM_PROGRAM =~ "iTerm"

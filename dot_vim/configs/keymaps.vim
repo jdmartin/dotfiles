@@ -28,9 +28,23 @@ nnoremap gf :tabe <cfile><CR>
 "map :%s/ to <leader>s
 nnoremap <leader>s :%s/
 
-" CoC error jumpint
-nmap <silent> <leader>e <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>E <Plug>(coc-diagnostic-prev)
+" CoC diagnostics toggle
+nnoremap <silent> <leader>E :CocList diagnostics<CR>
+
+" Toggle lopen/lclose with ALE
+let g:loclist_visible = 0
+
+function! ToggleLocationList()
+  if g:loclist_visible
+    lclose
+    let g:loclist_visible = 0
+  else
+    lopen
+    let g:loclist_visible = 1
+  endif
+endfunction
+
+nnoremap <silent> <Leader>e :call ToggleLocationList()<CR>
 
 " clear search
 nnoremap <leader><space> :noh<CR>

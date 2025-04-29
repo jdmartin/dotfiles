@@ -39,3 +39,6 @@ augroup END
 " Disable ALE linting for all other file types
 let g:ale_linters_explicit = 1
 
+" Disable in-line errors, since we're using local list
+let g:ale_virtualtext_cursor = 0
+let g:ale_virtualtext_prefix = ''
