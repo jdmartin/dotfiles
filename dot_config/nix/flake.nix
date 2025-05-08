@@ -19,6 +19,7 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [ 
+          pkgs.cowsay
           pkgs.nano
           pkgs.nmap
           pkgs.open-adventure
