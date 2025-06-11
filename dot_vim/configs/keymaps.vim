@@ -56,3 +56,7 @@ endif
 
 " Select all
 nnoremap <Leader>a ggVG<CR>
+
+" Insert Date in NA format: Mon d, year
+inoremap <Leader>; <C-r>=strftime('%b %d, %Y')<CR>
+
