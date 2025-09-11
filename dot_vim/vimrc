@@ -32,6 +32,7 @@ call plug#begin()
         source ~/.vim/configs/coc.vim
     endif
     source ~/.vim/configs/commentary.vim
+    source ~/.vim/configs/fugitive.vim
     source ~/.vim/configs/nerdtree.vim
     source ~/.vim/configs/signature.vim
     source ~/.vim/configs/surround.vim
