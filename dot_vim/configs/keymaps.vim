@@ -60,5 +60,8 @@ nnoremap <Leader>a ggVG<CR>
 " Insert Date in NA format: Mon d, year
 inoremap <Leader>; <C-r>=strftime('%b %d, %Y')<CR>
 
-" Jump to quickfix area
-nnoremap <Leader><Tab> <C-w>j
+" Move to next window
+nnoremap <leader><Tab> <C-W>w
+
+" Move to previous window
+nnoremap <leader><S-Tab> <C-W>W
