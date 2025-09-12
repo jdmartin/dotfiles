@@ -15,4 +15,4 @@ function! ToggleGitLog() abort
   Gclog!
 endfunction
 
-nnoremap <silent> <Leader>l :call ToggleGitLog()<CR>
+nnoremap <silent> <Leader>gl :call ToggleGitLog()<CR>
