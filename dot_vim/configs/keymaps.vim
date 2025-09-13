@@ -49,11 +49,6 @@ nnoremap <silent> <Leader>e :call ToggleLocationList()<CR>
 " clear search
 nnoremap <leader><space> :noh<CR>
 
-" Run jq to pretty print json
-if executable('jq')
-    nnoremap <Leader>j :%!jq .<CR>
-endif
-
 " Select all
 nnoremap <Leader>a ggVG<CR>
 
@@ -65,3 +60,38 @@ nnoremap <leader><Tab> <C-W>w
 
 " Move to previous window
 nnoremap <leader><S-Tab> <C-W>W
+
+" Shortcut to allow calling jq from a .json file
+if executable('jq')
+  augroup JqPrettyPrint
+    autocmd!
+    " Normal mode: whole buffer formatting (only for JSON files)
+    autocmd FileType json nnoremap <buffer> <Leader>j :call JqPrettyBuffer()<CR>
+  augroup END
+
+  " Visual mode: selection formatting (for ALL filetypes)
+  vnoremap <Leader>j :<C-u>call JqPrettyVisual()<CR>
+endif
+
+" Pretty-print entire buffer with jq
+function! JqPrettyBuffer()
+  let l:orig = getline(1, '$')
+  let l:jq_out = system('jq .', join(l:orig, "\n"))
+  if v:shell_error == 0
+    call setline(1, split(l:jq_out, "\n"))
+  else
+    echohl ErrorMsg | echom "jq failed: " . substitute(l:jq_out, '\n\+$', '', '') | echohl None
+  endif
+endfunction
+
+" Pretty-print visual selection with jq
+function! JqPrettyVisual()
+  let l:orig = getline("'<", "'>")
+  let l:jq_out = system('jq .', join(l:orig, "\n"))
+  if v:shell_error == 0
+    call setline("'<", split(l:jq_out, "\n"))
+  else
+    echohl ErrorMsg | echom "jq failed: " . substitute(l:jq_out, '\n\+$', '', '') | echohl None
+  endif
+endfunction
+
