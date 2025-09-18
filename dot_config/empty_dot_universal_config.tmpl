@@ -133,6 +133,12 @@ export RBENV_ROOT="$XDG_CONFIG_HOME"/.rbenv
 {{- end }}
 
 ###### Infrequently Encountered Things ######
+{{- if eq .chezmoi.hostname "minerva" }}
+###### Specific to Rasp Pi Server ######
+#Colorterm
+export COLORTERM=truecolor
+{{- end }}
+
 {{- if lookPath "conan" -}}
 #conan
 export CONAN_USER_HOME="$XDG_DATA_HOME"/conan
