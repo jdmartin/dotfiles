@@ -29,8 +29,12 @@ let g:ale_pattern_options = { '\.env$': {'ale_enabled': 0} }
 let g:ale_enabled = 1
 let g:ale_linter_aliases = {'fish': []}
 
-" Set .env files to conf type to avoid shellcheck issues
-autocmd BufRead,BufNewFile .env set filetype=conf
+" Set .env files to type env
+augroup env_syntax
+  autocmd!
+  " Match .env and .env.* files
+  autocmd BufRead,BufNewFile .env,.env.* setfiletype env
+augroup END
 
 " Check if a file has a Fish shebang and map it to the 'fish' filetype:
 augroup ale_ignore_fish
