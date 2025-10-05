@@ -1,5 +1,5 @@
 {{- if (lookPath "sfw") -}}
-function npm --describe 'wrap npm install with sfw'
+function npm --description 'wrap npm install with sfw'
     if test (count $argv) -ge 1; and test $argv[1] = "install"
         sfw npm $argv
     else
