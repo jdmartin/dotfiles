@@ -48,3 +48,8 @@ source ~/.vim/configs/theme-tweaks.vim " Theme Content
 source ~/.vim/configs/keymaps.vim " Custom Keymappings
 source ~/.vim/configs/formatting.vim " Tabs, Spaces, All That...
 source ~/.vim/configs/search-related.vim " Changes search functions and styles
+
+" Source ~/.vim/vimrc.local if it exists (to allow machine-specific tweaks)
+if filereadable($HOME . '/.vim/vimrc.local')
+    source $HOME/.vim/vimrc.local
+endif
