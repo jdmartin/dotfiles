@@ -33,6 +33,7 @@ export HISTFILE="$XDG_CONFIG_HOME"/.sh_history
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 
 {{- if lookPath "brew" }}
+
 #Homebrew
 #Stop Homebrew connections from downgrading to http
 export HOMEBREW_NO_INSECURE_REDIRECT=1
@@ -54,6 +55,7 @@ export HOMEBREW_VERIFY_ATTESTATIONS=1
 {{- end }}
 
 {{- if eq .chezmoi.os "darwin" }}
+
 ###### Mac-only ######
 #GO
 export GOPATH=$HOME/.local/go
