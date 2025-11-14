@@ -17,17 +17,27 @@ function convert_time_remainder
 end
 
 function display_countdown
-    if test -e "$TMPDIR"/aws_expires
-        # Convert the given date string to Unix epoch time and collect offset info
-        set -l date_string (cat "$TMPDIR"/aws_expires | sed 's/://g')
-        set -l unix_epoch (date -j -f "%Y-%m-%dT%H%M%S%z" "$date_string" "+%s")
-        set -l current_time (date "+%s")
-        set -l difference (math $unix_epoch - $current_time)
-        if test $difference -gt 0
-            set -l remaining_time (convert_time_remainder $difference)
-            echo (set_color 0086b3)" (Role: $remaining_time)"(set_color normal)
-        end
-    end
+   if test -f "$XDG_CONFIG_DIR[1]/aws-1password-helper/aws_expires"
+       set -g EXPIRES_FILE "$XDG_CONFIG_DIR[1]/aws-1password-helper/aws_expires"
+   end
+   if test -f "$HOME/.config/aws-1password-helper/aws_expires"
+       set -g EXPIRES_FILE "$HOME/.config/aws-1password-helper/aws_expires"
+   end
+
+   if test -f $EXPIRES_FILE
+       set -l EXPIRES_TIME (cat $EXPIRES_FILE)
+       if test -n "$EXPIRES_TIME"
+           # Convert the given date string to Unix epoch time and collect offset info
+           set -l date_string (echo "$EXPIRES_TIME" | sed 's/://g')
+           set -l unix_epoch (date -j -f "%Y-%m-%dT%H%M%S%z" "$date_string" "+%s")
+           set -l current_time (date "+%s")
+           set -l difference (math $unix_epoch - $current_time)
+           if test $difference -gt 0
+               set -l remaining_time (convert_time_remainder $difference)
+               echo (set_color 0086b3)" (Role: $remaining_time)"(set_color normal)
+           end
+       end
+   end
 end
 {{ end -}}
 
