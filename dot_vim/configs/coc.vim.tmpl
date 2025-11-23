@@ -1,3 +1,5 @@
+let $INTELEPHENSE_STORAGE_PATH = expand('~/.cache/intelephense')
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Autoformat Go on save
@@ -14,6 +16,13 @@ autocmd BufWritePre *.py :CocCommand python.sortImports
 
 " Autoformat CSS/SCSS on save using Prettier
 autocmd BufWritePre *.css,*.scss,*.sass :CocCommand prettier.formatFile
+
+" Remap K to show function signature / documentation via Coc
+nnoremap K :call CocActionAsync('doHover')<CR>
+
+" Floating hover colors
+hi CocFloating guibg=#000000 guifg=#ffffff
+hi CocFloatingBorder guibg=#000000 guifg=#ffffff
 
 " Completion options
 set completeopt=longest,menuone
