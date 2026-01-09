@@ -22,6 +22,8 @@ SAVEHIST=1000000
 setopt HIST_IGNORE_ALL_DUPS
 # Do not find duplicate command when searching
 setopt HIST_FIND_NO_DUPS
+# Add timestamps to history
+setopt EXTENDED_HISTORY
 
 #Custom Variables
 
@@ -111,7 +113,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=14,bold,underline"
 #Disused Plugin
 #macos
 
-source "$HOME"/.local/share/oh-my-zsh/oh-my-zsh.sh
+# source "$HOME"/.local/share/oh-my-zsh/oh-my-zsh.sh
 
 # User configuration
 
@@ -143,6 +145,9 @@ function vim() {
 function virtualenv_info() {
     [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
 }
+
+# Init the ZSH completion system
+autoload -U compinit; compinit
 
 #Custom location for zcompdump
 compinit -d "$HOME"/.config/zsh/cache/zcompdump-$ZSH_VERSION;
