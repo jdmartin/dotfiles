@@ -3,7 +3,9 @@ function vim --description 'Run the best editor -- vim'
     if test "$TERM_PROGRAM" = "iTerm.app"
         iterm2_set_user_var badge
     end
-    if test -e /usr/local/bin/vim
+    if test -e /usr/local/bin/nvim
+        command /usr/local/bin/nvim $argv
+    else if test -e /usr/local/bin/vim
         command /usr/local/bin/vim $argv
     else
         command /usr/bin/vim $argv
