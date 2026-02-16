@@ -53,13 +53,13 @@ setup_server("intelephense", {
         "xml", "xmlreader", "xmlwriter", "zip", "zlib", "wordpress" 
       },
       files = { maxSize = 1000000, associations = { "*.php", "*.inc" } },
-      environment = { includePaths = { "/Users/Jon/.config/nvim/stubs" } },
+      environment = { includePaths = { "/Users/Jon/.local/stubs" } },
       diagnostics = { enable = true },
     },
   },
 })
 
--- 6. Go & Python
+-- 6. Go and Python
 setup_server("gopls", {
   settings = { gopls = { usePlaceholders = true, completeUnimported = true } }
 })
