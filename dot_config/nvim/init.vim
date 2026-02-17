@@ -56,8 +56,8 @@ call plug#begin(stdpath('data') . '/plugged')
     " nerdtree
     Plug 'preservim/nerdtree'
 
-    " signature
-    Plug 'jdmartin/vim-signature'
+    " marks
+    Plug 'chentoast/marks.nvim'
 	
 call plug#end()
 
@@ -82,3 +82,4 @@ source ~/.config/nvim/configs/nerdtree.vim
 source ~/.config/nvim/configs/search-related.vim
 source ~/.config/nvim/configs/telescope.vim
 source ~/.config/nvim/configs/theme-tweaks.vim
+luafile ~/.config/nvim/configs/marks.lua
