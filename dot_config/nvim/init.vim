@@ -83,3 +83,8 @@ source ~/.config/nvim/configs/search-related.vim
 source ~/.config/nvim/configs/telescope.vim
 source ~/.config/nvim/configs/theme-tweaks.vim
 luafile ~/.config/nvim/configs/marks.lua
+
+" Source ~/.vim/vimrc.local if it exists (to allow machine-specific tweaks)
+if filereadable($HOME . '~/.config/nvim/vimrc.local')
+    source ~/.config/nvim/vimrc.local
+endif
