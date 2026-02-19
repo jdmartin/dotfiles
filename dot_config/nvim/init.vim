@@ -58,6 +58,9 @@ call plug#begin(stdpath('data') . '/plugged')
 
     " marks
     Plug 'chentoast/marks.nvim'
+
+    " markdown
+    Plug 'MeanderingProgrammer/render-markdown.nvim'
 	
 call plug#end()
 
