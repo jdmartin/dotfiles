@@ -71,6 +71,21 @@ setup_server("pyright", {
   }
 })
 
+-- 6b. Lemminx (XML) with custom cache path via Environment Variable
+setup_server("lemminx", {
+  settings = {
+    xml = {
+      server = {
+        workDir = os.getenv("HOME") .. "/.cache/lemminx"
+      }
+    }
+  },
+  -- This sets the env var specifically for this LSP process
+  cmd_env = { 
+    LEMMINX_DIR = os.getenv("HOME") .. "/.cache/lemminx" 
+  }
+})
+
 -- 7. Null-ls (Restored Formatting)
 local null_ls = require("null-ls")
 null_ls.setup({
