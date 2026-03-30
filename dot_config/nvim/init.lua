@@ -52,7 +52,6 @@ vim.keymap.set("n", "<leader>d", function()
 end, { desc = "Toggle Trouble Diagnostics" })
 
 -- === MISC CONFIG FILES ===
--- You can continue sourcing your .vim files using vim.cmd.source
 local config_path = vim.fn.stdpath("config") .. "/configs/"
 
 local vim_configs = {
@@ -72,7 +71,7 @@ for _, file in ipairs(vim_configs) do
   vim.cmd.source(config_path .. file)
 end
 
--- Loading your native lua config
+-- Loading native lua config
 require("marks") -- This looks for ~/.config/nvim/lua/marks.lua or configs/marks.lua
 
 -- Source local tweaks if they exist
