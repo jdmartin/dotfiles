@@ -27,42 +27,40 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 " === PLUGINS ===
-call plug#begin(stdpath('data') . '/plugged')
-    Plug 'dracula/vim', { 'as': 'dracula' }
+" === NATIVE PLUGIN MANAGEMENT (Neovim 0.12+) ===
+lua << EOF
+-- 1. Automate hooks (like Treesitter update)
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    if ev.data.spec.name == 'nvim-treesitter' and ev.data.kind == 'update' then
+      vim.cmd('TSUpdate')
+    end
+  end
+})
 
-    " For Completions
-	Plug 'hrsh7th/cmp-nvim-lsp'
-	Plug 'hrsh7th/cmp-buffer'
-	Plug 'hrsh7th/cmp-path'
-	Plug 'hrsh7th/cmp-cmdline'
-	Plug 'hrsh7th/nvim-cmp'
-   
-    " LSP support
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'williamboman/mason.nvim'
-    Plug 'williamboman/mason-lspconfig.nvim'
-    Plug 'nvimtools/none-ls.nvim'
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'folke/trouble.nvim'
-
-    " Optional (for status info, prettier UI)
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-lualine/lualine.nvim'
-
-    " telescope
-    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-    Plug 'nvim-telescope/telescope.nvim'
-
-    " nerdtree
-    Plug 'preservim/nerdtree'
-
-    " marks
-    Plug 'chentoast/marks.nvim'
-
-    " markdown
-    Plug 'MeanderingProgrammer/render-markdown.nvim'
-	
-call plug#end()
+-- 2. Define and Load Plugins
+vim.pack.add({
+    'https://github.com/dracula/vim',
+    'https://github.com/hrsh7th/cmp-nvim-lsp',
+    'https://github.com/hrsh7th/cmp-buffer',
+    'https://github.com/hrsh7th/cmp-path',
+    'https://github.com/hrsh7th/cmp-cmdline',
+    'https://github.com/hrsh7th/nvim-cmp',
+    'https://github.com/neovim/nvim-lspconfig',
+    'https://github.com/williamboman/mason.nvim',
+    'https://github.com/williamboman/mason-lspconfig.nvim',
+    'https://github.com/nvimtools/none-ls.nvim',
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'master' },
+    'https://github.com/folke/trouble.nvim',
+    'https://github.com/nvim-lua/plenary.nvim',
+    'https://github.com/nvim-lualine/lualine.nvim',
+    'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
+    'https://github.com/nvim-telescope/telescope.nvim',
+    'https://github.com/preservim/nerdtree',
+    'https://github.com/chentoast/marks.nvim',
+    'https://github.com/MeanderingProgrammer/render-markdown.nvim',
+})
+EOF
 
 " === Trouble Setup ===
 lua << EOF
