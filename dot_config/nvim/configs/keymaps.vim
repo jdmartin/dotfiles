@@ -54,8 +54,8 @@ nnoremap <leader>rr <cmd>lua require('telescope.builtin').resume()<cr>
 " === LSP & DIAGNOSTICS (The Built-in Way) ===
 
 " Navigation (Jump to Errors)
-nnoremap <silent> <leader>e <cmd>lua vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>
-nnoremap <silent> <leader>E <cmd>lua vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })<CR>
+nnoremap <silent> <leader>e <cmd>lua vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })<CR>
+nnoremap <silent> <leader>E <cmd>lua vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })<CR>
 
 " Toggle Trouble (Your diagnostic list)
 nnoremap <leader>xx <cmd>Trouble diagnostics toggle<cr>
