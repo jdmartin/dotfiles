@@ -16,7 +16,7 @@ if ts_status then
         highlight = {
             enable = true,
             -- The "Anti-Crash" rule:
-            disable = { "markdown", "markdown_inline" },
+            -- disable = { "markdown", "markdown_inline" },
         },
     })
 end
