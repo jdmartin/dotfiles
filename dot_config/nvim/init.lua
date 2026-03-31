@@ -1,4 +1,7 @@
 -- === BASIC SETTINGS ===
+-- Force Neovim to see the Homebrew path (common for ARM64 Macs)
+vim.env.PATH = "/opt/homebrew/bin:" .. vim.env.PATH
+
 -- Using vim.opt (global, window, and buffer-local options)
 vim.opt.encoding = "utf-8"
 vim.opt.number = true             -- Show line numbers
@@ -34,7 +37,11 @@ vim.pack.add({
     'https://github.com/williamboman/mason.nvim',
     'https://github.com/williamboman/mason-lspconfig.nvim',
     'https://github.com/nvimtools/none-ls.nvim',
-    { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'master' },
+    { 
+      src = 'https://github.com/nvim-treesitter/nvim-treesitter', 
+      version = 'master',
+      build = ':TSUpdate' 
+    },
     'https://github.com/folke/trouble.nvim',
     'https://github.com/nvim-lua/plenary.nvim',
     'https://github.com/nvim-lualine/lualine.nvim',
@@ -42,7 +49,6 @@ vim.pack.add({
     'https://github.com/nvim-telescope/telescope.nvim',
     'https://github.com/preservim/nerdtree',
     'https://github.com/chentoast/marks.nvim',
-    'https://github.com/MeanderingProgrammer/render-markdown.nvim',
 })
 
 -- === Trouble Setup ===
@@ -55,24 +61,29 @@ end, { desc = "Toggle Trouble Diagnostics" })
 local config_path = vim.fn.stdpath("config") .. "/configs/"
 
 local vim_configs = {
-  "completion.vim",
-  "floating-term.vim",
-  "formatting.vim",
-  "keymaps.vim",
-  "lsp-related.vim",
-  "lualine.vim",
-  "nerdtree.vim",
-  "search-related.vim",
-  "telescope.vim",
-  "theme-tweaks.vim",
+  "completion",
+  "floating-term",
+  "formatting",
+  "keymaps",
+  "lsp-related",
+  "lualine",
+  "nerdtree",
+  "search-related",
+  "telescope",
+  "theme-tweaks",
 }
 
 for _, file in ipairs(vim_configs) do
-  vim.cmd.source(config_path .. file)
+  if file:match("%.vim$") then
+    vim.cmd.source(vim.fn.stdpath("config") .. "/configs/" .. file)
+  else
+    -- This looks in ~/.config/nvim/lua/configs/
+    require("configs." .. file)
+  end
 end
 
 -- Loading native lua config
-require("marks") -- This looks for ~/.config/nvim/lua/marks.lua or configs/marks.lua
+require("configs.marks") -- This looks for ~/.config/nvim/lua/marks.lua or configs/marks.lua
 
 -- Source local tweaks if they exist
 local local_vimrc = vim.fn.stdpath("config") .. "/vimrc.local"

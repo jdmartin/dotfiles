@@ -1,19 +1,23 @@
-lua << EOF
-local telescope = require('telescope')
+-- === TELESCOPE CONFIGURATION ===
+
+local status, telescope = pcall(require, 'telescope')
+if not status then return end
+
 local previewers = require('telescope.previewers')
 
 telescope.setup({
   defaults = {
-    -- 1. Use the 'cat' previewer (plain text) instead of the 'buffer' previewer
-    -- This avoids the buggy highlighters completely.
+    -- 1. Use plain text previewers (Fast & Reliable on Pis)
     file_previewer = previewers.cat.new,
     grep_previewer = previewers.vimgrep.new,
     qflist_previewer = previewers.qflist.new,
 
-    -- 2. Visual settings
-    prompt_prefix = " 🔍 ",
+    -- 2. Visual settings (Clean & Functional)
+    -- If Monaco doesn't show the magnifying glass, change to "Find:"
+    prompt_prefix = " 🔍 ", 
     selection_caret = "  ",
     sorting_strategy = "ascending",
+    
     layout_config = {
       horizontal = {
         prompt_position = "top",
@@ -25,12 +29,10 @@ telescope.setup({
   },
   pickers = {
     find_files = {
-      -- Let's go back to standard Telescope file finding
-      -- but keep it simple to ensure the list isn't empty.
       hidden = true
     },
   },
 })
 
+-- Safely load the FZF extension (compiled C-extension)
 pcall(telescope.load_extension, 'fzf')
-EOF

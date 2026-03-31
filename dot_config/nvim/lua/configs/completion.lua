@@ -1,7 +1,9 @@
-set completeopt=menuone
+-- === COMPLETION SETTINGS ===
+vim.opt.completeopt = { "menuone" }
 
-lua <<EOF
-local cmp = require('cmp')
+-- Safely require cmp to avoid errors if the plugin isn't installed yet
+local status, cmp = pcall(require, "cmp")
+if not status then return end
 
 cmp.setup({
   snippet = {
@@ -28,6 +30,8 @@ cmp.setup({
   }),
 })
 
--- We just define this globally so lsp-related.vim can grab it
-_G.lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-EOF
+-- Define capabilities for LSP (used by lsp-related.lua later)
+local cmp_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if cmp_lsp_status then
+    _G.lsp_capabilities = cmp_nvim_lsp.default_capabilities()
+end

@@ -1,8 +1,18 @@
-lua << EOF
-require('lualine').setup({
+-- === LUALINE CONFIGURATION ===
+
+-- 1. Essential UI settings for Global Status and Tabline
+vim.opt.showtabline = 2
+vim.opt.laststatus = 3
+
+-- 2. Safely load lualine
+local status, lualine = pcall(require, "lualine")
+if not status then return end
+
+lualine.setup({
   options = {
     theme = 'dracula',
     globalstatus = true,
+    icons_enabled = false,
     section_separators = { left = ' ', right = ' ' },
     component_separators = { left = '|', right = '|' },
   },
@@ -15,17 +25,16 @@ require('lualine').setup({
     lualine_z = {'location'}
   },
   tabline = {
-    -- We put them in lualine_a so they HAVE to be visible and colored
+    -- Buffers in the tabline for easy navigation
     lualine_a = {
       {
         'buffers',
         show_filename_only = true,
-        mode = 2, -- [1] filename.php
-        max_length = vim.o.columns * 4 / 5,
-        -- High contrast colors using the theme's built-in palettes
+        mode = 2, -- Showing index and filename
+        max_length = vim.opt.columns:get() * 4 / 5,
         buffers_color = {
-          active = 'lualine_a_normal',     -- Bright (usually Purple/Pink)
-          inactive = 'lualine_b_visual',   -- Darker but visible
+          active = 'lualine_a_normal',
+          inactive = 'lualine_b_visual',
         },
         symbols = { alternate_file = '' },
         separator = { left = '  ', right = '  ' },
@@ -34,8 +43,3 @@ require('lualine').setup({
     lualine_z = {'tabs'}
   },
 })
-
--- The critical settings to make sure the UI renders
-vim.opt.showtabline = 2
-vim.opt.laststatus = 3
-EOF
