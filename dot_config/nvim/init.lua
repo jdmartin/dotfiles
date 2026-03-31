@@ -49,6 +49,7 @@ vim.pack.add({
     'https://github.com/nvim-telescope/telescope.nvim',
     'https://github.com/preservim/nerdtree',
     'https://github.com/chentoast/marks.nvim',
+    'https://github.com/MeanderingProgrammer/render-markdown.nvim',
 })
 
 -- === Trouble Setup ===
