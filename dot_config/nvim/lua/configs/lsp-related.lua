@@ -23,10 +23,13 @@ end
 
 -- 1. LSP HOVER SHIELD (The most important part)
 -- This globally forces the hover window to be stable and plain.
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+vim.lsp.handlers["textDocument/hover"] = function(err, result, ctx, config)
+  local default_config = {
     border = "rounded",
-    stylize_markdown = false, -- Stops the 'range' nil error for good
-})
+    stylize_markdown = false,
+  }
+  return vim.lsp.handlers.hover(err, result, ctx, vim.tbl_deep_extend("force", default_config, config or {}))
+end
 
 -- 1. Setup Mason (Portable Package Manager)
 local mason_status, mason = pcall(require, "mason")
