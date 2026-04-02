@@ -11,7 +11,7 @@ local ts_status, ts_config = pcall(require, "nvim-treesitter.configs")
 if ts_status then
     ts_config.setup({
         ensure_installed = { 
-            "php", "python", "go", "perl", "javascript", "rust", "lua", "vim", "vimdoc" 
+            "php", "python", "go", "perl", "javascript", "rust", "lua", "vim", "vimdoc", "html", "latex", "yaml" 
         },
         highlight = {
             enable = true,
