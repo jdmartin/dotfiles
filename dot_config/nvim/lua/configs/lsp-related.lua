@@ -13,13 +13,30 @@ if ts_status then
         ensure_installed = { 
             "php", "python", "go", "perl", "javascript", "rust", "lua", "vim", "vimdoc", "html", "latex", "yaml" 
         },
-        highlight = {
-            enable = true,
+        -- highlight = {
+            -- enable = true,
             -- The "Anti-Crash" rule:
             -- disable = { "markdown", "markdown_inline" },
-        },
+        -- },
     })
 end
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  callback = function(args)
+    local bufnr = args.buf
+    local ft = vim.bo[bufnr].filetype
+
+    -- Map filetypes to treesitter languages if they differ
+    local lang = vim.treesitter.language.get_lang(ft) or ft
+
+    -- Check if we have a parser installed for this language
+    local has_parser, _ = pcall(vim.treesitter.get_parser, bufnr, lang)
+
+    if has_parser then
+      vim.treesitter.start(bufnr, lang)
+    end
+  end,
+})
 
 -- 1. LSP HOVER SHIELD (The most important part)
 -- This globally forces the hover window to be stable and plain.
