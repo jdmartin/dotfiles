@@ -16,15 +16,6 @@ vim.opt.wildoptions = "pum"       -- Popup menu style
 vim.opt.mouse = "a"               -- Enable mouse in all modes
 
 -- === NATIVE PLUGIN MANAGEMENT (Neovim 0.12+) ===
--- Automate hooks (like Treesitter update)
-vim.api.nvim_create_autocmd('PackChanged', {
-  callback = function(ev)
-    if ev.data.spec.name == 'nvim-treesitter' and ev.data.kind == 'update' then
-      vim.cmd('TSUpdate')
-    end
-  end
-})
-
 -- Define and Load Plugins
 vim.pack.add({
     'https://github.com/dracula/vim',
@@ -37,11 +28,6 @@ vim.pack.add({
     'https://github.com/williamboman/mason.nvim',
     'https://github.com/williamboman/mason-lspconfig.nvim',
     'https://github.com/nvimtools/none-ls.nvim',
-    { 
-      src = 'https://github.com/nvim-treesitter/nvim-treesitter', 
-      version = 'main',
-      build = ':TSUpdate' 
-    },
     'https://github.com/folke/trouble.nvim',
     'https://github.com/nvim-lua/plenary.nvim',
     'https://github.com/nvim-lualine/lualine.nvim',

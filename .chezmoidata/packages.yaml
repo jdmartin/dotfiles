@@ -8,6 +8,5 @@ packages:
     - 'gnu-sed'
     - 'grep'
     - 'shellcheck'
-    - 'tree-sitter-cli'
     casks:
     - '1password-cli'
