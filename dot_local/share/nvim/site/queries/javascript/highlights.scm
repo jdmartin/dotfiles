@@ -60,11 +60,11 @@
 
 ((identifier) @variable.builtin
  (#match? @variable.builtin "^(arguments|module|console|window|document)$")
- (#is-not? local))
+; (#is-not? local))
 
 ((identifier) @function.builtin
  (#eq? @function.builtin "require")
- (#is-not? local))
+; (#is-not? local))
 
 ; Literals
 ;---------
