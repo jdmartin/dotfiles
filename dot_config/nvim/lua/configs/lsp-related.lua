@@ -26,14 +26,19 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     local bufnr = args.buf
     local ft = vim.bo[bufnr].filetype
 
-    -- Map filetypes to treesitter languages if they differ
+    -- Ignore specific 'junk' filetypes immediately
+    if ft == "trouble" or ft == "NvimTree" or ft == "help" then
+      return
+    end
+
     local lang = vim.treesitter.language.get_lang(ft) or ft
 
-    -- Check if we have a parser installed for this language
-    local has_parser, _ = pcall(vim.treesitter.get_parser, bufnr, lang)
+    -- Check if we have a parser installed
+    local has_parser = pcall(vim.treesitter.get_parser, bufnr, lang)
 
     if has_parser then
-      vim.treesitter.start(bufnr, lang)
+      -- The 'pcall' here is the final safety net
+      pcall(vim.treesitter.start, bufnr, lang)
     end
   end,
 })
