@@ -39,24 +39,27 @@ keymap("v", ">", ">gv", opts)
 keymap("x", "<Tab>", ":s/^/\\t/<CR>:nohl<CR>", opts)
 keymap("x", "<S-Tab>", ":s/^\\t//<CR>:nohl<CR>", opts)
 
+-- Find settings
+vim.keymap.set("n", "<C-p>", ":find *", { noremap = true })
+
 -- --- Telescope Search Mappings ---
 
-local builtin = require('telescope.builtin')
+-- local builtin = require('telescope.builtin')
 
 -- Find Files (Old Ctrl-P style)
-keymap("n", "<C-p>", builtin.find_files, opts)
+-- keymap("n", "<C-p>", builtin.find_files, opts)
 
 -- Live Grep (Search text inside files - requires ripgrep)
-keymap("n", "<leader>lg", builtin.live_grep, opts)
+-- keymap("n", "<leader>lg", builtin.live_grep, opts)
 
 -- Search Open Buffers
-keymap("n", "<leader>b", builtin.buffers, opts)
+-- keymap("n", "<leader>b", builtin.buffers, opts)
 
 -- Search LSP Symbols (Shows all functions/variables in current file)
-keymap("n", "<leader>is", builtin.lsp_document_symbols, opts)
+-- keymap("n", "<leader>is", builtin.lsp_document_symbols, opts)
 
 -- Resume last search (Very handy!)
-keymap("n", "<leader>rr", builtin.resume, opts)
+-- keymap("n", "<leader>rr", builtin.resume, opts)
 
 -- === LSP & DIAGNOSTICS (The Built-in Way) ===
 

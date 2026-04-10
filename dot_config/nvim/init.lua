@@ -14,6 +14,14 @@ vim.opt.backspace = "indent,eol,start"
 vim.opt.wildmenu = true           -- Wildmenu on
 vim.opt.wildoptions = "pum"       -- Popup menu style
 vim.opt.mouse = "a"               -- Enable mouse in all modes
+vim.opt.path:append("**")
+
+-- Tell Neovim to ignore these folders when searching
+vim.opt.wildignore:append({ "*/node_modules/*", "*/.git/*", "*/vendor/*", "*/target/*" })
+
+-- Enable 'wildmenu' for a much better UI when you hit Tab
+vim.opt.wildmenu = true
+vim.opt.wildmode = "longest:full,full"
 
 -- === NATIVE PLUGIN MANAGEMENT (Neovim 0.12+) ===
 -- Define and Load Plugins
@@ -29,10 +37,7 @@ vim.pack.add({
     'https://github.com/williamboman/mason-lspconfig.nvim',
     'https://github.com/nvimtools/none-ls.nvim',
     'https://github.com/folke/trouble.nvim',
-    'https://github.com/nvim-lua/plenary.nvim',
     'https://github.com/nvim-lualine/lualine.nvim',
-    'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
-    'https://github.com/nvim-telescope/telescope.nvim',
     'https://github.com/preservim/nerdtree',
     'https://github.com/chentoast/marks.nvim',
     'https://github.com/MeanderingProgrammer/render-markdown.nvim',
@@ -56,7 +61,6 @@ local vim_configs = {
   "lualine",
   "nerdtree",
   "search-related",
-  "telescope",
   "theme-tweaks",
 }
 
