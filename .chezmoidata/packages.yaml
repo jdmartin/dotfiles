@@ -10,3 +10,4 @@ packages:
     - 'shellcheck'
     casks:
     - '1password-cli'
+    - 'font-code-new-roman-nerd-font'
