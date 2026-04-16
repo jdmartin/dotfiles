@@ -1,26 +1,6 @@
 -- === LSP CONFIGURATION ===
 
 -- 0. TREESITTER CONFIG (Consolidated)
-local ts_install_status, ts_install = pcall(require, "nvim-treesitter.install")
-if ts_install_status then
-    -- Fix the '--no-bindings' warning by bypassing the CLI
-    ts_install.prefer_git = true
-end
-
-local ts_status, ts_config = pcall(require, "nvim-treesitter.configs")
-if ts_status then
-    ts_config.setup({
-        ensure_installed = { 
-            "php", "python", "go", "perl", "javascript", "rust", "lua", "vim", "vimdoc", "html", "latex", "yaml" 
-        },
-        -- highlight = {
-            -- enable = true,
-            -- The "Anti-Crash" rule:
-            -- disable = { "markdown", "markdown_inline" },
-        -- },
-    })
-end
-
 vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function(args)
     local bufnr = args.buf
@@ -61,7 +41,7 @@ if mason_status and m_lsp_status then
   mason.setup()
   mason_lspconfig.setup({
     ensure_installed = { 
-      "pyright", "gopls", "ts_ls", "bashls", "html", 
+      "pyright", "gopls", "ts_ls", "bashls", 
       "rust_analyzer", "intelephense", "lemminx" 
     },
   })
@@ -102,7 +82,7 @@ local function setup_server(name, custom_config)
 end
 
 -- 4. Standard Servers
-for _, name in ipairs({ "ts_ls", "bashls", "html", "rust_analyzer" }) do
+for _, name in ipairs({ "ts_ls", "bashls", "rust_analyzer" }) do
   setup_server(name)
 end
 
@@ -181,7 +161,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
 
 -- 10. Auto-Formatting on Save
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.go", "*.py", "*.css", "*.scss", "*.js", "*.ts" },
+  pattern = { "*.go", "*.py", "*.css", "*.scss", "*.js", "*.ts", "*.html" },
   callback = function()
     vim.lsp.buf.format({ async = false })
   end,
