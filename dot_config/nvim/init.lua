@@ -45,9 +45,10 @@ vim.pack.add({
 
 -- === Trouble Setup ===
 require("trouble").setup()
+
 vim.keymap.set("n", "<leader>d", function()
-  require("trouble").toggle("diagnostics")
-end, { desc = "Toggle Trouble Diagnostics" })
+  require("trouble").toggle({ mode = "diagnostics", focus = true })
+end, { desc = "Toggle Trouble Diagnostics (Focused)" })
 
 -- === MISC CONFIG FILES ===
 local config_path = vim.fn.stdpath("config") .. "/configs/"
