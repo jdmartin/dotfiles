@@ -173,3 +173,6 @@ export POWERSHELL_TELEMETRY_OPTOUT=1
 export RDAP_OUTPUT=rendered-markdown
 export RDAP_PAGING=embedded
 {{- end }}
+{{- if lookPath "gh" }}
+export GH_TELEMETRY=false
+{{- end }}

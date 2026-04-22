@@ -160,10 +160,25 @@ vim.api.nvim_create_autocmd("CursorHold", {
 })
 
 -- 10. Auto-Formatting on Save
+-- 10. Auto-Formatting on Save (with Jinja Safety Check)
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { "*.go", "*.py", "*.css", "*.scss", "*.js", "*.ts", "*.html" },
-  callback = function()
-    vim.lsp.buf.format({ async = false })
+  callback = function(args)
+    -- 1. Check if this is an HTML file
+    if vim.bo[args.buf].filetype == "html" then
+      -- 2. Get buffer content and check for Jinja braces {{ or {%
+      local lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)
+      local content = table.concat(lines, "\n")
+      
+      if content:match("{{") or content:match("{%%") then
+        -- Skip formatting and exit early to protect template syntax
+        -- print("Jinja detected: Skipping format to protect braces.") -- Optional debug line
+        return
+      end
+    end
+
+    -- 3. If not HTML or no Jinja found, format as usual
+    vim.lsp.buf.format({ bufnr = args.buf, async = false })
   end,
 })
 
