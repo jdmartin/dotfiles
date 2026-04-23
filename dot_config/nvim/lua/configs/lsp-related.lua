@@ -169,8 +169,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
       -- 2. Get buffer content and check for Jinja braces {{ or {%
       local lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)
       local content = table.concat(lines, "\n")
+      local has_jinja = content:match("{{") or content:match("{%%")
+      local has_code_blocks = content:match("<code>") or content:match("<pre>")
       
-      if content:match("{{") or content:match("{%%") then
+      if has_jinja or has_code_blocks then
         -- Skip formatting and exit early to protect template syntax
         -- print("Jinja detected: Skipping format to protect braces.") -- Optional debug line
         return
