@@ -38,9 +38,9 @@ vim.pack.add({
     'https://github.com/nvimtools/none-ls.nvim',
     'https://github.com/folke/trouble.nvim',
     'https://github.com/nvim-lualine/lualine.nvim',
-    'https://github.com/preservim/nerdtree',
     'https://github.com/chentoast/marks.nvim',
     'https://github.com/MeanderingProgrammer/render-markdown.nvim',
+    'https://github.com/nvim-tree/nvim-tree.lua',
 })
 
 -- === Trouble Setup ===
@@ -60,7 +60,7 @@ local vim_configs = {
   "keymaps",
   "lsp-related",
   "lualine",
-  "nerdtree",
+  "nvimtree",
   "search-related",
   "theme-tweaks",
 }
