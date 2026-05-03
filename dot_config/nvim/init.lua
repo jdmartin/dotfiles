@@ -38,6 +38,8 @@ vim.pack.add({
     'https://github.com/nvimtools/none-ls.nvim',
     'https://github.com/folke/trouble.nvim',
     'https://github.com/nvim-lualine/lualine.nvim',
+    'https://github.com/nvim-tree/nvim-web-devicons',
+    'https://github.com/akinsho/bufferline.nvim',
     'https://github.com/chentoast/marks.nvim',
     'https://github.com/MeanderingProgrammer/render-markdown.nvim',
     'https://github.com/nvim-tree/nvim-tree.lua',
@@ -54,6 +56,7 @@ end, { desc = "Toggle Trouble Diagnostics (Focused)" })
 local config_path = vim.fn.stdpath("config") .. "/configs/"
 
 local vim_configs = {
+  "bufferline",
   "completion",
   "floating-term",
   "formatting",
