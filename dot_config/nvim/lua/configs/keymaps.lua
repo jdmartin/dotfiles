@@ -92,3 +92,23 @@ if vim.fn.executable('jq') == 1 then
     -- Format visual selection in ANY file
     keymap("v", "<Leader>j", ":!jq .<CR>", opts)
 end
+
+-- Gitsigns --
+vim.keymap.set('n', '<Leader>gd', function()
+  local gs = require('gitsigns')
+  if vim.wo.diff then
+    -- Find and close the diff partner window (the gitsigns temp buffer)
+    for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      local bufname = vim.api.nvim_buf_get_name(buf)
+      -- Gitsigns diff buffers are unnamed or have a gitsigns:// URI
+      if bufname:match('^gitsigns://') then
+        vim.api.nvim_win_close(win, true)
+        break
+      end
+    end
+    vim.cmd('diffoff!')
+  else
+    gs.diffthis()
+  end
+end, { desc = 'Toggle Gitsigns diffthis' })
