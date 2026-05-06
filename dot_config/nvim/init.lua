@@ -43,6 +43,7 @@ vim.pack.add({
     'https://github.com/chentoast/marks.nvim',
     'https://github.com/MeanderingProgrammer/render-markdown.nvim',
     'https://github.com/nvim-tree/nvim-tree.lua',
+    'https://github.com/lewis6991/gitsigns.nvim',
 })
 
 -- === Trouble Setup ===
