@@ -12,10 +12,9 @@ lualine.setup({
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch'},
+    lualine_b = {'branch', 'b:gitsigns_status', 'lsp_status', "require'lsp-status'.status()"},
     lualine_c = {'filename'},
-    lualine_e = {'searchcount'},
-    lualine_x = {'filetype'},
+    lualine_x = {'searchcount', 'encoding', 'filesize', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },
