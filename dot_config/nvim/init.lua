@@ -61,6 +61,7 @@ local vim_configs = {
   "completion",
   "floating-term",
   "formatting",
+  "gitsigns",
   "keymaps",
   "lsp-related",
   "lualine",
