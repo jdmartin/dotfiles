@@ -7,6 +7,9 @@ local opts = { noremap = true, silent = true }
 -- Close all panes and quit without saving
 keymap("n", "<Leader>,", ":qa!<CR>:FloatermKill<CR>", opts)
 
+-- Shortcut for closing a buffer
+keymap("n", "<leader>q", ":bd<CR>", { desc = "Close buffer" })
+
 -- Toggle Search Highlighting
 keymap("n", "<leader><space>", ":noh<CR>", opts)
 
