@@ -44,7 +44,7 @@ if mason_status and m_lsp_status then
     ensure_installed = { 
       "pyright", "gopls", "ts_ls", "bashls", 
       "rust_analyzer", "intelephense", "lemminx",
-      [[- if lookPath "tf" -]]
+      [[- if lookPath "terraform" -]]
       "terraformls",
       [[- end ]]
     },
@@ -127,7 +127,7 @@ setup_server("lemminx", {
   },
   cmd_env = { LEMMINX_DIR = vim.fn.expand("$HOME/.cache/lemminx") }
 })
-[[- if lookPath "tf" ]]
+[[- if lookPath "terraform" ]]
 
 -- 7.5 Terraform
 setup_server("terraformls")
@@ -144,7 +144,7 @@ if n_status then
       null_ls.builtins.formatting.black,
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.prettier,
-      [[ if lookPath "tf" -]]
+      [[ if lookPath "terraform" -]]
       null_ls.builtins.formatting.terraform_fmt,
       [[- end ]]
     },
@@ -176,7 +176,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
 
 -- 10. Auto-Formatting on Save (with Jinja Safety Check)
 vim.api.nvim_create_autocmd("BufWritePre", {
-  [[- if lookPath "tf" ]]
+  [[- if lookPath "terraform" ]]
   pattern = { "*.go", "*.py", "*.css", "*.scss", "*.js", "*.ts", "*.html", "*.tf" },
   [[ else ]]
   pattern = { "*.go", "*.py", "*.css", "*.scss", "*.js", "*.ts", "*.html" },
