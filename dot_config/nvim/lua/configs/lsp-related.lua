@@ -42,7 +42,8 @@ if mason_status and m_lsp_status then
   mason_lspconfig.setup({
     ensure_installed = { 
       "pyright", "gopls", "ts_ls", "bashls", 
-      "rust_analyzer", "intelephense", "lemminx" 
+      "rust_analyzer", "intelephense", "lemminx",
+      "terraformls",
     },
   })
 end
@@ -124,6 +125,9 @@ setup_server("lemminx", {
   cmd_env = { LEMMINX_DIR = vim.fn.expand("$HOME/.cache/lemminx") }
 })
 
+-- 7.5 Terraform
+setup_server("terraformls")
+
 -- 8. Null-ls (Formatting / Linting)
 local n_status, null_ls = pcall(require, "null-ls")
 if n_status then
@@ -132,6 +136,7 @@ if n_status then
       null_ls.builtins.formatting.black,
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.prettier,
+      null_ls.builtins.formatting.terraform_fmt,
     },
     on_attach = my_on_attach,
   })
@@ -162,7 +167,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
 -- 10. Auto-Formatting on Save
 -- 10. Auto-Formatting on Save (with Jinja Safety Check)
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.go", "*.py", "*.css", "*.scss", "*.js", "*.ts", "*.html" },
+  pattern = { "*.go", "*.py", "*.css", "*.scss", "*.js", "*.ts", "*.html", "*.tf" },
   callback = function(args)
     -- 1. Check if this is an HTML file
     if vim.bo[args.buf].filetype == "html" then
