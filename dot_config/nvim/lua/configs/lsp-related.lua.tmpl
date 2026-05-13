@@ -42,9 +42,20 @@ if mason_status and m_lsp_status then
   mason.setup()
   mason_lspconfig.setup({
     ensure_installed = { 
-      "pyright", "gopls", "ts_ls", "bashls", 
-      "rust_analyzer", "intelephense", "lemminx",
-      [[- if lookPath "terraform" -]]
+      "pyright",
+      [[- if lookPath "go" ]]
+      "gopls",
+      [[- end ]]
+      "ts_ls",
+      "bashls", 
+      [[- if lookPath "rustc" ]]
+      "rust_analyzer",
+      [[- end ]]
+      [[- if lookPath "php" ]]
+      "intelephense",
+      [[- end ]]
+      "lemminx",
+      [[- if lookPath "terraform" ]]
       "terraformls",
       [[- end ]]
     },
@@ -86,10 +97,16 @@ local function setup_server(name, custom_config)
 end
 
 -- 4. Standard Servers
+[[- if lookPath "rustc" ]]
 for _, name in ipairs({ "ts_ls", "bashls", "rust_analyzer" }) do
   setup_server(name)
 end
-
+[[ else ]]
+for _, name in ipairs({ "ts_ls", "bashls" }) do
+  setup_server(name)
+end
+[[ end -]]
+[[- if lookPath "php" ]]
 -- 5. Intelephense (PHP / WordPress)
 setup_server("intelephense", {
   init_options = {
@@ -106,16 +123,21 @@ setup_server("intelephense", {
         "xml", "xmlreader", "xmlwriter", "zip", "zlib", "wordpress"
       },
       files = { maxSize = 1000000, associations = { "*.php", "*.inc" } },
-      environment = { includePaths = { "/Users/Jon/.local/stubs" } },
+      environment = { includePaths = { "$HOME/.local/stubs" } },
     },
   },
 })
 
+[[ else ]]
+
+[[ end -]]
+
 -- 6. Go and Python
+[[- if lookPath "go" ]]
 setup_server("gopls", {
   settings = { gopls = { usePlaceholders = true, completeUnimported = true } }
 })
-
+[[ end ]]
 setup_server("pyright", {
   settings = { python = { analysis = { typeCheckingMode = "basic" } } }
 })
