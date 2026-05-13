@@ -1,3 +1,4 @@
+# chezmoi:template:left-delimiter="[[" right-delimiter="]]"
 -- === LSP CONFIGURATION ===
 
 -- 0. TREESITTER CONFIG (Consolidated)
@@ -43,7 +44,9 @@ if mason_status and m_lsp_status then
     ensure_installed = { 
       "pyright", "gopls", "ts_ls", "bashls", 
       "rust_analyzer", "intelephense", "lemminx",
+      [[- if lookPath "tf" -]]
       "terraformls",
+      [[- end ]]
     },
   })
 end
@@ -124,9 +127,14 @@ setup_server("lemminx", {
   },
   cmd_env = { LEMMINX_DIR = vim.fn.expand("$HOME/.cache/lemminx") }
 })
+[[- if lookPath "tf" ]]
 
 -- 7.5 Terraform
 setup_server("terraformls")
+
+[[ else ]]
+
+[[ end -]]
 
 -- 8. Null-ls (Formatting / Linting)
 local n_status, null_ls = pcall(require, "null-ls")
@@ -136,7 +144,9 @@ if n_status then
       null_ls.builtins.formatting.black,
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.prettier,
+      [[ if lookPath "tf" -]]
       null_ls.builtins.formatting.terraform_fmt,
+      [[- end ]]
     },
     on_attach = my_on_attach,
   })
@@ -164,14 +174,17 @@ vim.api.nvim_create_autocmd("CursorHold", {
   end,
 })
 
--- 10. Auto-Formatting on Save
 -- 10. Auto-Formatting on Save (with Jinja Safety Check)
 vim.api.nvim_create_autocmd("BufWritePre", {
+  [[- if lookPath "tf" ]]
   pattern = { "*.go", "*.py", "*.css", "*.scss", "*.js", "*.ts", "*.html", "*.tf" },
+  [[ else ]]
+  pattern = { "*.go", "*.py", "*.css", "*.scss", "*.js", "*.ts", "*.html" },
+  [[ end ]]
   callback = function(args)
     -- 1. Check if this is an HTML file
     if vim.bo[args.buf].filetype == "html" then
-      -- 2. Get buffer content and check for Jinja braces {{ or {%
+      -- 2. Get buffer content and check for Jinja braces
       local lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)
       local content = table.concat(lines, "\n")
       local has_jinja = content:match("{{") or content:match("{%%")
