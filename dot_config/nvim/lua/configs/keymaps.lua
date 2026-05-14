@@ -100,18 +100,47 @@ end
 vim.keymap.set('n', '<Leader>gd', function()
   local gs = require('gitsigns')
   if vim.wo.diff then
-    -- Find and close the diff partner window (the gitsigns temp buffer)
+    -- Pause render-markdown before touching diff state
+    local rm_ok, rm = pcall(require, 'render-markdown')
+    if rm_ok then
+      pcall(rm.disable)
+    end
+
+    -- Close the gitsigns:// split
     for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
       local buf = vim.api.nvim_win_get_buf(win)
       local bufname = vim.api.nvim_buf_get_name(buf)
-      -- Gitsigns diff buffers are unnamed or have a gitsigns:// URI
       if bufname:match('^gitsigns://') then
         vim.api.nvim_win_close(win, true)
         break
       end
     end
+
     vim.cmd('diffoff!')
+
+    -- Re-enable render-markdown after everything has settled
+    vim.schedule(function()
+      if rm_ok then
+        pcall(rm.enable)
+      end
+    end)
   else
+    -- Also pause render-markdown while diffthis() sets up,
+    -- then re-enable only on the original buffer (not the gitsigns one)
+    local rm_ok, rm = pcall(require, 'render-markdown')
+    local curbuf = vim.api.nvim_get_current_buf()
+    if rm_ok then
+      pcall(rm.disable)
+    end
+
     gs.diffthis()
+
+    vim.schedule(function()
+      if rm_ok then
+        -- Only re-enable on the markdown buffer, not the gitsigns:// buffer
+        vim.api.nvim_set_current_buf(curbuf)
+        pcall(rm.enable)
+      end
+    end)
   end
 end, { desc = 'Toggle Gitsigns diffthis' })
