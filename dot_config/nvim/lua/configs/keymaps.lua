@@ -144,3 +144,18 @@ vim.keymap.set('n', '<Leader>gd', function()
     end)
   end
 end, { desc = 'Toggle Gitsigns diffthis' })
+
+-- Toggle blame panel --
+vim.keymap.set('n', '<Leader>gb', function()
+ -- Check if a gitsigns blame panel is already open
+ for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+   local buf = vim.api.nvim_win_get_buf(win)
+   local bufname = vim.api.nvim_buf_get_name(buf)
+   if bufname:match('^gitsigns%-blame://') then
+     vim.api.nvim_win_close(win, true)
+     return
+   end
+ end
+ -- No blame panel found, open one
+ require('gitsigns').blame()
+end, { desc = 'Toggle Gitsigns blame panel' })
