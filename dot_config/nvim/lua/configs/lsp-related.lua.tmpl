@@ -39,7 +39,11 @@ local mason_status, mason = pcall(require, "mason")
 local m_lsp_status, mason_lspconfig = pcall(require, "mason-lspconfig")
 
 if mason_status and m_lsp_status then
-  mason.setup()
+  mason.setup({
+    firewall = {
+      enabled = true
+    },
+  })
   mason_lspconfig.setup({
     ensure_installed = { 
       "pyright",
