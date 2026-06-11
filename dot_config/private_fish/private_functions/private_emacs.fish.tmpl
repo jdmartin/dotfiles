@@ -1,8 +1,0 @@
-{{- if stat "/Applications/Emacs.app" -}}
-function emacs --description 'Run the second best editor -- emacs'
-    if test "$TERM_PROGRAM" = "iTerm.app"
-        iterm2_set_user_var badge
-    end
-    command emacs --init-directory ~/.local/state/emacs
-end
-{{- end }}
