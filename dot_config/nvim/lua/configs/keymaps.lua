@@ -37,6 +37,9 @@ vim.cmd([[cabbrev bterm bo term]])
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
+-- Redo
+vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
+
 -- === TAB INDENTATION (Visual Mode) ===
 -- xnoremap handles visual mode specifically
 keymap("x", "<Tab>", ":s/^/\\t/<CR>:nohl<CR>", opts)

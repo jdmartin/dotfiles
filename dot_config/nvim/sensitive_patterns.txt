@@ -1,0 +1,8 @@
+# one glob per line, # for comments, blank lines ignored
+*.env*
+*secret*
+*credential*
+*.pem
+*.key
+shadow
+*/dovecot/*.conf

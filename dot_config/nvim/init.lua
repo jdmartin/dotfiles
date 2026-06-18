@@ -87,3 +87,40 @@ local local_vimrc = vim.fn.stdpath("config") .. "/vimrc.local"
 if vim.fn.filereadable(local_vimrc) == 1 then
   vim.cmd.source(local_vimrc)
 end
+
+-- Persistent undo across sessions/restarts
+vim.opt.undofile = true
+vim.opt.undodir = "/private/tmp/nvim-undo//"
+vim.opt.undolevels = 10000
+
+local undodir = "/private/tmp/nvim-undo"
+if vim.fn.isdirectory(undodir) == 0 then
+  vim.fn.mkdir(undodir, "p", tonumber("700", 8))
+end
+
+local function read_patterns(path)
+  path = vim.fn.expand(path)
+  if vim.fn.filereadable(path) == 0 then
+    return {}
+  end
+  local patterns = {}
+  for _, line in ipairs(vim.fn.readfile(path)) do
+    line = line:match("^%s*(.-)%s*$") -- trim
+    if line ~= "" and not line:match("^#") then
+      table.insert(patterns, line)
+    end
+  end
+  return patterns
+end
+
+local sensitive_patterns = read_patterns("~/.config/nvim/sensitive_patterns.txt")
+
+if #sensitive_patterns > 0 then
+  vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
+    pattern = sensitive_patterns,
+    callback = function()
+      vim.opt_local.undofile = false
+      vim.opt_local.swapfile = false
+    end,
+  })
+end
