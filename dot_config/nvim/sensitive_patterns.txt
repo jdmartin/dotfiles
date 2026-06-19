@@ -6,3 +6,5 @@
 *.key
 shadow
 */dovecot/*.conf
+# Work things
+run-local-api
