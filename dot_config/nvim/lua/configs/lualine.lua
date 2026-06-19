@@ -1,8 +1,37 @@
 -- === LUALINE CONFIGURATION ===
 vim.opt.laststatus = 3
-
 local status, lualine = pcall(require, "lualine")
 if not status then return end
+
+local function undo_count()
+  local ut = vim.fn.undotree()
+  if ut.seq_last == 0 then
+    return ""
+  end
+  return string.format("↺%d/%d", ut.seq_cur, ut.seq_last)
+end
+
+local function is_persisted()
+  if not vim.bo.undofile then
+    return false
+  end
+  local fname = vim.api.nvim_buf_get_name(0)
+  if fname == "" then
+    return false
+  end
+  return vim.fn.filereadable(vim.fn.undofile(fname)) == 1
+end
+
+local function undo_color()
+  local ut = vim.fn.undotree()
+  if ut.seq_last == 0 then
+    return {}
+  end
+  if ut.seq_cur < ut.seq_last then
+    return { fg = "#7dcfff" } -- cyan: you're back in history, redo available
+  end
+  return is_persisted() and { fg = "#8fbc8f" } or { fg = "#e0af68" } -- green = on disk, amber = memory-only
+end
 
 lualine.setup({
   options = {
@@ -42,7 +71,17 @@ lualine.setup({
       },
     },
     lualine_c = { 'filename' },
-    lualine_x = { 'searchcount', 'encoding', 'filesize', 'filetype' },
+    lualine_x = {
+      {
+        undo_count,
+        color = undo_color,
+        cond = function() return vim.fn.undotree().seq_last > 0 end,
+      },
+      'searchcount',
+      'encoding',
+      'filesize',
+      'filetype',
+    },
     lualine_y = { 'progress' },
     lualine_z = { 'location' },
   },
