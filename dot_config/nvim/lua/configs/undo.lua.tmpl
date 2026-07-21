@@ -7,7 +7,11 @@ vim.opt.undodir = "/tmp/nvim-undo"
 {{ end -}}
 vim.opt.undolevels = 10000
 
+{{ if eq .chezmoi.os "darwin" -}}
 local undodir = "/private/tmp/nvim-undo"
+{{ else }}
+local undodir = "/tmp/nvim-undo"
+{{ end -}}
 if vim.fn.isdirectory(undodir) == 0 then
   vim.fn.mkdir(undodir, "p", tonumber("700", 8))
 end
