@@ -1,3 +1,4 @@
+{{- if has .chezmoi.os (list "linux" "darwin") -}}
 function vim --description 'Run the best editor -- vim'
     if test "$TERM_PROGRAM" = "iTerm.app"
         iterm2_set_user_var badge
@@ -10,3 +11,4 @@ function vim --description 'Run the best editor -- vim'
         command /usr/bin/vim $argv
     end
 end
+{{ end -}}
