@@ -8,7 +8,6 @@
 .config/fish/functions/harlequin.fish
 .config/fish/functions/ls.fish
 .config/fish/functions/nano.fish
-.config/fish/functions/vim.fish
 .config/python/.pylintrc
 .config/zsh
 .hushlogin
