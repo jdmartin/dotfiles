@@ -1,14 +1,12 @@
-{{- if eq .chezmoi.os "darwin" -}}
 function vim --description 'Run the best editor -- vim'
     if test "$TERM_PROGRAM" = "iTerm.app"
         iterm2_set_user_var badge
     end
-    if test -e /usr/local/bin/nvim
-        command /usr/local/bin/nvim $argv
+    if command -v nvim >/dev/null
+        command nvim $argv
     else if test -e /usr/local/bin/vim
         command /usr/local/bin/vim $argv
     else
         command /usr/bin/vim $argv
     end
 end
-{{- end -}}
