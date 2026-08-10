@@ -7,7 +7,7 @@ vim.opt.encoding = "utf-8"
 vim.opt.number = true             -- Show line numbers
 vim.opt.relativenumber = true     -- Show relative line numbers
 vim.opt.confirm = true            -- Confirm on quit if unsaved changes
-vim.opt.clipboard:append("unnamed") -- Use system clipboard
+vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
 vim.opt.selection = "exclusive"   -- Don't grab gutter when selecting
 vim.opt.swapfile = false          -- No swapfile
 vim.opt.backspace = "indent,eol,start"
