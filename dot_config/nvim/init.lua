@@ -16,6 +16,12 @@ vim.opt.wildoptions = "pum"       -- Popup menu style
 vim.opt.mouse = "a"               -- Enable mouse in all modes
 vim.opt.path:append("**")
 
+-- === FOLDING SETTINGS ===
+vim.opt.foldenable = true
+vim.opt.foldmethod = "indent"     -- indent, syntax, expr, tree-sitter, diff, manual
+vim.opt.foldlevel = 99            -- 99 = effectively all open on load
+vim.opt.foldlevelstart = 99       -- prevent folds from auto-closing when opening a file
+
 -- Tell Neovim to ignore these folders when searching
 vim.opt.wildignore:append({ "*/node_modules/*", "*/.git/*", "*/vendor/*", "*/target/*" })
 
